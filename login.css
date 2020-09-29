@@ -19,6 +19,7 @@ body {
   padding: 15px;
   margin: auto;
   height: 350px;
+  font-size: 1.5em;
   
   /*Neumorphism CSS */
   border-radius: 50px;
@@ -52,7 +53,7 @@ body {
 }
 
 .form-signin button[type="submit"] {
-  
+  font-size: 1em;
   /*Neumorphism CSS */
   border-radius: 50px;
   background: #d7d7d7;
