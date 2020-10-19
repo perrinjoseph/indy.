@@ -17,9 +17,6 @@ ul {
     text-decoration: none;
 }
 
-
-
-
 nav ul li {
     display: inline-block;
     padding: 15px 30px;
@@ -42,8 +39,6 @@ a:hover {
     text-decoration: none;
 }
 
-
-
 .row {
     height: 100vh;
     background-color: #D7D7D7;
@@ -52,9 +47,17 @@ a:hover {
     justify-content: center;
     align-items: center;
     display: flex;
-
 }
 
+.row-bottom-margin {
+    margin-bottom:30px; 
+    height: 100%;
+    background-color: #D7D7D7;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
 
 .row .form {
     margin-bottom: 8%;
@@ -116,7 +119,6 @@ a:hover {
 }
 
 .row .form button:hover {
-
     border-radius: 35px;
     background: #D7D7D7;
     box-shadow: inset 16px 16px 31px #b7b7b7,
@@ -158,18 +160,14 @@ a:hover {
     padding: 12px;
     margin-top: 20px;
     width: 120px;
-    
-    
 
     border-radius: 35px;
     background: #D7D7D7;
     box-shadow: 12px 12px 24px #b7b7b7,
         -12px -12px 24px #f7f7f7;
-
 }
 
 .row .package button:hover {
-
     border-radius: 35px;
     background: #D7D7D7;
     box-shadow: inset 16px 16px 31px #b7b7b7,
@@ -181,12 +179,20 @@ a:hover {
     text-align: center;
 }
 
-@media screen and (max-width:600px) {
+.profile-pic {
+    display:flex;
+    align-items: center;
+    border-radius: 50%;
+    background: #d7d7d7;
+    width: 200px;
+    height: 200px;
+    box-shadow:  41px 41px 82px #979797, 
+                -41px -41px 82px #ffffff;
+}
 
+@media screen and (max-width:600px) {
     nav ul li {
         text-align: right;
         width: 100%;
     }
-
-
 }
