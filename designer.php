@@ -51,28 +51,39 @@
                 5/5
             </div>
         </div>
-        <div class="row-bottom-margin">
-            <div class="col-sm-4">
-                <img src="images/room1.jpg" class="img-fluid" alt="Room 1">
-            </div>
-            <div class="col-sm-4">
-                <img src="images/room2.jpg" class="img-fluid" alt="Room 2">
-            </div>
-            <div class="col-sm-4">
-                <img src="images/room3.jpg" class="img-fluid" alt="Room 3">
-            </div>
-        </div>
-        <div class="row-bottom-margin">
-            <div class="col-sm-4">
-                <img src="images/room4.jpg" class="img-fluid" alt="Room 1">
-            </div>
-            <div class="col-sm-4">
-                <img src="images/room5.jpg" class="img-fluid" alt="Room 2">
-            </div>
-            <div class="col-sm-4">
-                <img src="images/room6.jpg" class="img-fluid" alt="Room 3">
-            </div>
-        </div>
+
+        <?php
+            //Display the room images
+            $roomImages = "images/designer-images";
+            $images = glob($roomImages . "/*.jpg");
+            $numImages = sizeof($images);
+            $imageIndex = 0;
+
+            //Calculate how many rows are needed based on the number of total images (each row has 3 images)
+            $numRows = 0;
+            if($numImages % 3 == 0) {
+                $numRows = $numImages / 3;
+            } else {
+                $numRows = ($numImages / 3) + 1;
+            }
+
+            // Display up to 3 images and then place a new row, then repeat until out of images
+            for($i = 0; $i < $numRows; $i++) {
+                echo "<div class='row-bottom-margin'>";
+                for($x=0; $x < 3; $x++) {
+                    if($imageIndex < $numImages) {
+
+        ?>
+                    <div class="col-sm-4">
+                        <img src=<?php echo "$images[$imageIndex]";?> class="img-fluid" alt="Room">
+                        <?php $imageIndex++; ?>
+                    </div>
+        <?php
+                    }
+                }
+                echo "</div>";
+            }
+        ?>
     </div>
     <script src="script.js"></script>
 </body>
