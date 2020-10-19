@@ -17,9 +17,6 @@ ul {
     text-decoration: none;
 }
 
-
-
-
 nav ul li {
     display: inline-block;
     padding: 15px 30px;
@@ -42,8 +39,6 @@ a:hover {
     text-decoration: none;
 }
 
-
-
 .row {
     height: 100vh;
     background-color: #D7D7D7;
@@ -52,9 +47,18 @@ a:hover {
     justify-content: center;
     align-items: center;
     display: flex;
-
 }
 
+.row-bottom-margin {
+    margin-bottom:20px; 
+    height: 100%;
+    background-color: #D7D7D7;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
 
 .row .form {
     margin-bottom: 8%;
@@ -181,12 +185,28 @@ a:hover {
     text-align: center;
 }
 
-@media screen and (max-width:600px) {
+.profile {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #d7d7d7;
+    box-shadow:  41px 41px 82px #979797, 
+                -41px -41px 82px #ffffff;
+}
 
+.profile img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    height: 92%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+@media screen and (max-width:600px) {
     nav ul li {
         text-align: right;
         width: 100%;
     }
-
-
 }
