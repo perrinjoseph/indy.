@@ -50,7 +50,7 @@ a:hover {
 }
 
 .row-bottom-margin {
-    margin-bottom:20px; 
+    margin-bottom:30px; 
     height: 100%;
     background-color: #D7D7D7;
     width: 100%;
@@ -119,7 +119,6 @@ a:hover {
 }
 
 .row .form button:hover {
-
     border-radius: 35px;
     background: #D7D7D7;
     box-shadow: inset 16px 16px 31px #b7b7b7,
@@ -161,18 +160,14 @@ a:hover {
     padding: 12px;
     margin-top: 20px;
     width: 120px;
-    
-    
 
     border-radius: 35px;
     background: #D7D7D7;
     box-shadow: 12px 12px 24px #b7b7b7,
         -12px -12px 24px #f7f7f7;
-
 }
 
 .row .package button:hover {
-
     border-radius: 35px;
     background: #D7D7D7;
     box-shadow: inset 16px 16px 31px #b7b7b7,
@@ -184,23 +179,15 @@ a:hover {
     text-align: center;
 }
 
-.profile {
-    width: 200px;
-    height: 200px;
+.profile-pic {
+    display:flex;
+    align-items: center;
     border-radius: 50%;
     background: #d7d7d7;
+    width: 200px;
+    height: 200px;
     box-shadow:  41px 41px 82px #979797, 
                 -41px -41px 82px #ffffff;
-}
-
-.profile img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 92%;
-    height: 92%;
-    object-fit: cover;
-    border-radius: 50%;
 }
 
 @media screen and (max-width:600px) {

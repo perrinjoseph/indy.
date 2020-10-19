@@ -23,11 +23,10 @@
     <nav class="menu">
 
         <ul>
-            <li><a href="login.html">Home</a></li>
+            <li><a href="feed.html">Feed</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="packages.html">Packages</a></li>
-            <li><a href="login.html">Sign Up</a></li>
-
+            <li><a href="designer.php">Profile</a></li>
+            <li><a href="#">Sign Out</a></li>
         </ul>
 
     </nav>
@@ -35,9 +34,7 @@
     <div class="container-fluid">
         <div class="row-bottom-margin">
             <div class="col-sm-2">
-                <div class="profile">
-                    <img src="images/profile1.jpg" alt="Designer"> 
-                </div>
+                <img src="images/profile1.jpg" class="rounded-circle img-fluid img-thumbnail" alt="Designer"> 
             </div>
             <div class="col-sm-6">
                     <h4>Jason Mendosa</h4>
@@ -45,10 +42,15 @@
             </div>
             <div class="col-sm-4">
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%"></div>
+                    <div class="progress-bar" style="width:100%"></div>
                 </div>
                 <h5>Rating:</h5>
                 5/5
+            </div>
+        </div>
+        <div class="row-bottom-margin">
+            <div class="col-sm-12">
+                <h2 class="text-center">Rooms Designed</h2>
             </div>
         </div>
 
