@@ -190,8 +190,6 @@ a:hover {
 div .room {
     display: flex;
     background-color: #D7D7D7;
-    /* height: 300px;
-    width: 300px; */
     border-radius: 56px;
     background: #d7d7d7;
     box-shadow:  12px 12px 27px #8e8e8e, 
@@ -220,33 +218,21 @@ div .heart a {
     left:0px;
 }
 
-div.scrollmenu {
+.scrollmenu {
     overflow: auto;
     white-space: nowrap;
 }
   
-div.scrollmenu div {
+.scrollmenu div {
     display: inline-block;
     text-align: center;
     padding: 20px;
     text-decoration: none;
 }
 
-/*Mobile Small*/
-@media screen and (max-width:350px){
-    div.scrollmenu div {
-        margin: 100px;
-    }
-}
-
-/*Mobile*/
 @media screen and (max-width:600px) {
     nav ul li {
         text-align: right;
         width: 100%;
-    }
-
-    div.scrollmenu div {
-        margin: 10px;
     }
 }
