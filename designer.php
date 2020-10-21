@@ -22,7 +22,7 @@
     <nav class="menu">
 
         <ul>
-            <li><a href="feed.html">Feed</a></li>
+            <li><a href="feed.php">Feed</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="designer.php">Profile</a></li>
             <li><a href="#">Sign Out</a></li>
