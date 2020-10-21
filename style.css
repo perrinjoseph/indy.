@@ -236,3 +236,128 @@ div .heart a {
         width: 100%;
     }
 }
+.aboutCard
+{
+    
+    margin-top: 3%;  
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D7D7D7;
+
+    height: 600px;
+    width: 800px;
+    border-radius: 68px;
+    background: #d7d7d7;
+    box-shadow:  41px 41px 82px #b7b7b7, 
+            -41px -41px 82px #f7f7f7;
+
+}
+.col1
+{
+    display: flex;
+    
+    height: 200px;
+    margin: 20px;
+    margin-top: -40%;
+    border-radius: 38px;
+    background: #d7d7d7;
+    box-shadow:  41px 41px 82px #b7b7b7, 
+            -41px -41px 82px #f7f7f7;
+    width: 1400px;
+}
+
+.col3
+{
+    background-image: url("https://miro.medium.com/max/1200/0*Ggt-XwliwAO6QURi.jpg");
+    width: 400px;
+    border-radius: 50%;
+    border: 2px solid #D7D7D7;
+    margin-left: 60px;
+}
+
+.col3:after
+{
+    content:"";
+    padding-bottom: 100%;
+    display: block;
+}
+
+.col
+{
+    border-radius: 100px;
+    background: #d7d7d7;
+    box-shadow:  41px 41px 82px #b7b7b7, 
+            -41px -41px 82px #f7f7f7;
+    width: 1400px;
+    margin: 40px;
+    padding: 30px;
+    padding-right: 40px;
+    text-align: left;  
+}
+.col8
+{
+    border-radius: 100px;
+    background: #d7d7d7;
+    box-shadow:  41px 41px 82px #b7b7b7, 
+            -41px -41px 82px #f7f7f7;
+    width: 400px;
+    margin: 40px;
+    padding: 30px;
+}
+
+#description
+{
+    height: 400px;
+    box-shadow:  none;
+    margin-bottom: -10px;
+}
+.col:hover
+{
+    border-radius: 100px;
+background: #D7D7D7;
+box-shadow: inset 35px 35px 70px #b7b7b7, 
+            inset -35px -35px 70px #f7f7f7;
+          text-align: left;  
+}
+
+#topMargin
+{
+    margin-top: -200px;
+}
+
+.row2
+{
+    height: 100vh;
+    background-color: #D7D7D7;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.col5
+{
+    
+    margin-bottom: 8%;
+    margin-top: 8%;
+    margin-left: 8%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D7D7D7;
+
+    height: 450px;
+    width: 600px;
+    border-radius: 60px;
+    background: #D7D7D7;
+    box-shadow: 33px 33px 66px #b7b7b7,
+        -33px -33px 66px #f7f7f7;
+        
+        
+}
+
+
