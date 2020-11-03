@@ -360,4 +360,15 @@ box-shadow: inset 35px 35px 70px #b7b7b7,
         
 }
 
+.nav-link { 
+    color: black;
+    font-style: bold;
+}
 
+.navbar-nav ml-auto flex-nowrap, li  a:hover
+{
+    border-radius: 20px;
+    background: #D7D7D7;
+    box-shadow: inset 12px 12px 24px #b7b7b7, 
+                inset -12px -12px 24px #f7f7f7;              
+}
