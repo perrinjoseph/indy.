@@ -40,7 +40,38 @@
                 <h1>Login</h1>
                 <input type="text" name="uname" placeholder="Username" required />
                 <input type="password" name="password" placeholder="Password" required />
-                <button type="submit">Login</button>
+                <button type="submit" name="submit">Login</button>
+
+                <?php
+                    include("database/config.php");
+                    
+                    if(isset($_POST["submit"])) {
+                        //get values from form
+                        $username = $_POST['uname'];
+                        $password = $_POST['password'];
+
+                        //prevent mysql injection
+                        // $username = stripcslashes($username);
+                        // $password = stripcslashes($password);
+                        // $username = mysqli_real_escape_string($username);
+                        // $password = mysqli_real_escape_string($password);
+
+                        //query database
+                        $result = @mysqli_query($connection, "select username, cast(aes_decrypt(psword, 'indy') as char), type from login 
+                            where username = '$username' and psword = aes_encrypt('$password', 'indy')") or die("failed to connect to database" .mysql_error());
+                        $row = mysqli_fetch_row($result);
+
+                        if($row[2] == "user"){
+                            header("Location: userHomePage.html");
+                        }
+                        elseif($row[2] == "designer"){
+                            header("Location: feed.php");
+                        }
+
+                        @mysqli_free_result($result);
+                        @mysqli_close($connection);
+                    }
+                ?>
             </form><br>
         </div>
             
@@ -83,39 +114,6 @@
             </div>
         </div>
     </div>
-
-
-    <?php
-        if(isset($_POST["submit"])) {
-            //get values from form
-            $username = $_POST['uname'];
-            $password = $_POST['password'];
-
-            //prevent mysql injection
-            $username = stripcslashes($username);
-            $password = stripcslashes($password);
-            $username = mysql_real_escape_string($username);
-            $password = mysql_real_escape_string($password);
-
-            //connect to server
-            $connection = @mysqli_connect("helios.vse.gmu.edu". "pdiazvil", "stoaho", "pdiazvill") or die("Cannot connect");
-
-            //query database
-            $result = @mysqli_query($connection, "select username, cast(aes_decrypt(psword, 'indy') as char), type from login 
-                where username = '$username' and psword = aes_encrypt('$password', 'indy')") or die("failed to connect to database" .mysql_error());
-            $row = mysqli_fetch_row($result);
-            if($result){
-                header("Location: feed.php");
-            }
-            else{
-                header("Location: about.html");
-            }
-
-            @mysqli_free_result($result);
-			@mysqli_close($connection);
-        }
-    ?>
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
