@@ -51,10 +51,10 @@
                         $password = $_POST['password'];
 
                         //prevent mysql injection
-                        // $username = stripcslashes($username);
-                        // $password = stripcslashes($password);
-                        // $username = mysqli_real_escape_string($username);
-                        // $password = mysqli_real_escape_string($password);
+                        $username = stripcslashes($username);
+                        $password = stripcslashes($password);
+                        $username = mysqli_real_escape_string($connection, $username);
+                        $password = mysqli_real_escape_string($connection, $password);
 
                         //query database
                         $result = @mysqli_query($connection, "select username, cast(aes_decrypt(psword, 'indy') as char), type from login 
