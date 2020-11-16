@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if (!isset($_SESSION["empID"])){
+        echo "You are not logged in";
+        header("Location: login.php");
+    }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -23,7 +30,7 @@
                 <li><a href="feed.php">Feed</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="designer.php">Profile</a></li>
-                <li><a href="#">Sign Out</a></li>
+                <li><a href="signOut.php">Sign Out</a></li>
             </ul>
         </nav>
 
