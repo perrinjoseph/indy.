@@ -66,11 +66,14 @@
                         $row = mysqli_fetch_row($result);
 
                         if($row[2] == "user"){
-                            $_SESSION["cusID"] = @mysqli_query($connection, "select cusID from customer where username = '$username'");
+                            $cusResult = @mysqli_query($connection, "select cusID from customer natural join login where username = '$username'");
+                            $cusRow = mysqli_fetch_assoc($cusResult);
+                            $_SESSION['cusID'] = $cusRow['cusID'];
                             header("Location: userHomePage.html");
                         } elseif($row[2] == "designer"){
-                            $cusID =  @mysqli_query($connection, "select cusID from customer where username = '$username'");
-                            $_SESSION["empID"] = "$cusID";
+                            $empResult = @mysqli_query($connection, "select empID from employee natural join login where username = '$username'");
+                            $empRow = mysqli_fetch_assoc($empResult);
+                            $_SESSION["empID"] = $empRow['empID'];
                             header("Location: feed.php");
                         } else {
                             echo "Invalid login";
