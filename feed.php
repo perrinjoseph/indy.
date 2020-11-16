@@ -25,42 +25,14 @@
     </head>
 
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
-        <div class="d-flex flex-grow-1">
-            <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-            <a class="navbar-brand" href="#">
-                indy.
-            </a>
-            <div class="w-100 text-right">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar7" >
-                    <span class="navbar-toggler-icon" ></span>
-                </button>
-            </div>
-        </div>
-        
-        
-        
-
-        
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
-            <ul class="navbar-nav ml-auto flex-nowrap">
-              
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-               
-                <li class="nav-item">
-                    <a href="feed.php" class="nav-link">Feed</a>
-                </li>
-                <li class="nav-item">
-                    <a href="designer.php" class="nav-link">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a href="signOut.php" class="nav-link">Sign Out</a>
-                </li>
+        <nav class="menu">
+            <ul>
+                <li><a href="feed.php">Feed</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="designer.php">Profile</a></li>
+                <li><a href="signOut.php">Sign Out</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
 
         <div class="container-fluid">
             <div class="row-bottom-margin">

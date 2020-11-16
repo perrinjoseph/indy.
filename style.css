@@ -187,14 +187,12 @@ a:hover {
 }
 
 div .room {
-    
+    display: flex;
     background-color: #D7D7D7;
     border-radius: 56px;
     background: #d7d7d7;
     box-shadow:  12px 12px 27px #8e8e8e, 
              -12px -12px 27px #ffffff;
-             height: 450px;
-             width: 350px;
 }
 
 .scrollmenu {
@@ -849,9 +847,4 @@ textarea
 {
    color: black;
    font-family: 'Poppins', sans-serif;
-}
-.responsive
-{
-    height: 380px;
-    
 }
