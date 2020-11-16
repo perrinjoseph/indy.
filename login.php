@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xtml1-strict.dtd">
 
@@ -21,17 +25,17 @@
 
 <body>
 
-    <nav class="menu">
+    <!-- <nav class="menu">
 
         <ul>
-            <li><a href="login.html">Home</a></li>
+            <li><a href="login.php">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="packages.html">Packages</a></li>
-            <li><a href="login.html">Sign Up</a></li>
+            <li><a href="login.php">Sign Up</a></li>
 
         </ul>
 
-    </nav>
+    </nav> -->
 
     <div class="row">
 
@@ -62,10 +66,17 @@
                         $row = mysqli_fetch_row($result);
 
                         if($row[2] == "user"){
-                            header("Location: userHomePage.html");
-                        }
-                        elseif($row[2] == "designer"){
+                            $cusResult = @mysqli_query($connection, "select cusID from customer natural join login where username = '$username'");
+                            $cusRow = mysqli_fetch_assoc($cusResult);
+                            $_SESSION['cusID'] = $cusRow['cusID'];
+                            header("Location: userHomePage.php");
+                        } elseif($row[2] == "designer"){
+                            $empResult = @mysqli_query($connection, "select empID from employee natural join login where username = '$username'");
+                            $empRow = mysqli_fetch_assoc($empResult);
+                            $_SESSION["empID"] = $empRow['empID'];
                             header("Location: feed.php");
+                        } else {
+                            echo "Invalid login";
                         }
 
                         @mysqli_free_result($result);
