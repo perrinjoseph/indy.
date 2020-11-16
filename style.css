@@ -1,4 +1,3 @@
-
 html,
 body {
     margin: 0 0;
@@ -467,7 +466,8 @@ div .heart a {
     background: rgba(179, 179, 179, 0.4);
     box-shadow: 12px 12px 24px rgba(38, 38, 38, 0.3),
         -12px -12px 24px rgba(247, 247, 247, 0.6) ;
-        color: #ffffff;
+        color: black;
+        text-shadow: 2px 2px 8px #676767;
         outline: none;
 }
 
@@ -570,20 +570,6 @@ box-shadow:  30px 30px 60px #b7b7b7,
 
 }
 
-#slides .slide_1 
-{
-   
-}
-
-#slides .slide_2 
-{
-    
-}
-
-#slides .slide_3 
-{
-    
-}
 
 .slide-content
 {
@@ -732,6 +718,7 @@ box-shadow:  30px 30px 60px #b7b7b7,
   }
   
   
+  
   .state:checked ~ .label .indicator::after {
     transform: scale3d(.975, .975, 1) translate3d(0, 10%, 0);
     opacity: 0;
@@ -748,10 +735,12 @@ box-shadow:  30px 30px 60px #b7b7b7,
   }
   
   .label:hover .text {
-    opacity: 1;
-    color: white;
+    
+    
     transform: scale(1.05);
   }
+  
+  
 
   .container
   {
@@ -775,9 +764,7 @@ box-shadow:  30px 30px 60px #b7b7b7,
      
       transform-style: preserve-3d;
   }
-  .container .box:hover{
-      
-  }
+ 
 
   .container .box .imgBx
   {
@@ -809,3 +796,55 @@ box-shadow:  30px 30px 60px #b7b7b7,
     transform: translateZ(20px) scaleY(1);
 }
   
+input[type="radio"]:checked + label
+{
+   
+   color: greenyellow;
+ 
+}
+
+.radiobutton1
+{
+    
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(169, 169, 169, 0.2);
+}
+
+.uploadform input[type=text]
+{
+    border-radius: 50px;
+background: rgba(0, 0, 0, 0.2);
+    padding: 3px;
+    border:none;
+    width: 60%;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+*:focus{
+    outline: none;
+}
+
+.uploadform form
+{
+    padding: 10%;
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-shadow: 2px 2px 8px #676767;
+}
+
+textarea
+{
+    background: rgba(0, 0, 0, 0.2);
+    padding: 3px;
+    border:none;
+    width: 60%;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+.uploadform input[type=submit]
+{
+   color: black;
+   font-family: 'Poppins', sans-serif;
+}
