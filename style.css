@@ -571,20 +571,6 @@ box-shadow:  30px 30px 60px #b7b7b7,
 
 }
 
-#slides .slide_1 
-{
-   
-}
-
-#slides .slide_2 
-{
-    
-}
-
-#slides .slide_3 
-{
-    
-}
 
 .slide-content
 {
@@ -779,9 +765,7 @@ box-shadow:  30px 30px 60px #b7b7b7,
      
       transform-style: preserve-3d;
   }
-  .container .box:hover{
-      
-  }
+ 
 
   .container .box .imgBx
   {
