@@ -25,7 +25,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
+<nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
         <div class="d-flex flex-grow-1">
             <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
             <a class="navbar-brand" href="#">
@@ -54,7 +54,6 @@
             </ul>
         </div>
     </nav>
-
 
     <div class="row">
 
