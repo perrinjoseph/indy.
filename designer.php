@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -25,7 +28,7 @@
             <li><a href="feed.php">Feed</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="designer.php">Profile</a></li>
-            <li><a href="#">Sign Out</a></li>
+            <li><a href="signOut.php">Sign Out</a></li>
         </ul>
 
     </nav>
@@ -36,8 +39,28 @@
                 <img src="images/profile1.jpg" class="rounded-circle img-fluid img-thumbnail" alt="Designer"> 
             </div>
             <div class="col-sm-6">
-                    <h4>Jason Mendosa</h4>
-                    Artist from Toronto. Started interior designing 3 years ago. Looking to build my portfolio and to give you a great experience.
+                    <?php
+                        // Check if the logged in user is a designer
+                        if (isset($_SESSION["empID"])){
+                            // Logged in; grab first name, last name, and about me from database
+                            $empID = $_SESSION["empID"];
+                            $result =  @mysqli_query($connection,"select fname, lname, aboutme from employee where empID = '$empID'");
+                            // Order: [0] = fname, [1] = lname, [2] = aboutme
+                            $row = mysqli_fetch_row($result);
+                            $fname = $row[0];
+                            $lname = $row[1];
+                            $aboutme = $row[2];
+                            echo "<h4>$fname $lname</h4>";
+                            echo "$aboutme";
+                        } else {
+                            echo "You are not logged in";
+                            header("Location: login.php");
+                        }
+
+                    ?>
+                    <!-- <h4>Jason Mendosa</h4>
+                    Artist from Toronto. Started interior designing 3 years ago. 
+                    Looking to build my portfolio and to give you a great experience. -->
             </div>
             <div class="col-sm-4">
                 <div class="progress">

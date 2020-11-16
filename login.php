@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xtml1-strict.dtd">
 
@@ -62,10 +66,14 @@
                         $row = mysqli_fetch_row($result);
 
                         if($row[2] == "user"){
+                            $_SESSION["cusID"] = @mysqli_query($connection, "select cusID from customer where username = '$username'");
                             header("Location: userHomePage.html");
-                        }
-                        elseif($row[2] == "designer"){
+                        } elseif($row[2] == "designer"){
+                            $cusID =  @mysqli_query($connection, "select cusID from customer where username = '$username'");
+                            $_SESSION["empID"] = "$cusID";
                             header("Location: feed.php");
+                        } else {
+                            echo "Invalid login";
                         }
 
                         @mysqli_free_result($result);
