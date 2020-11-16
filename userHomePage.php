@@ -148,13 +148,14 @@
                                   
                                   <label class="label" for="a">
                                    
-                                    <span class="text">Expert
-                                        
-                                            1 Room<br>
-                                            Size: 14x14 or less<br>
-                                            Design Revisions: N/A<br>
-                                            Furniture Purchase Links Avaialble<br>
-                                            Price: $79.99                   
+                                    <span class="text"><h1>Expert</h1>
+                                    <p>
+                                        1 Room<br>
+                                        Size: 14x14 or less<br>
+                                        Design Revisions: N/A<br>
+                                        Furniture Purchase Links Avaialble<br>
+                                        <h5>Price: $79.99</h5>                    
+                                    </p>               
                                         </span>
                                   </label>
                                 </div>
@@ -162,13 +163,14 @@
                                   <input class="state" type="radio" name="app" id="b" value="b">
                                   <label class="label" for="b">
                                    
-                                    <span class="text">  Premium
-                                        
-                                            1 Room<br>
-                                            Size: Greater than 14x14<br>
-                                            Design Revisions: Yes<br>
-                                            Furniture Purchase Links Available<br>
-                                            Price: $99.99
+                                    <span class="text">   <h1>Premium</h1>
+                                    <p>
+                                        1 Room<br>
+                                        Size: Greater than 14x14<br>
+                                        Design Revisions: Yes<br>
+                                        Furniture Purchase Links Available<br>
+                                        <h5>Price: $99.99</h5>
+                                    </p>
                                         </span>
                                   </label>
                                 </div>
@@ -176,13 +178,14 @@
                                   <input class="state" type="radio" name="app" id="c" value="c">
                                   <label class="label" for="c">
                                     
-                                    <span class="text"> Deluxe
-                                        
-                                            Up to 4 Rooms<br>
-                                            Size: Any Size<br>
-                                            Design Revisions: Yes<br>
-                                            Furniture Purchase Links Available<br>
-                                            Price: $300.00
+                                    <span class="text"><h1>Deluxe</h1>
+                                    <p>
+                                        1 Room<br>
+                                        Size: Any Size<br>
+                                        Design Revisions: Yes<br>
+                                        Furniture Purchase Links Available<br>
+                                        <h5>Price: $175.00</h5>
+                                    </p>
                                         </span>
                                   </label>
                                 </div>
