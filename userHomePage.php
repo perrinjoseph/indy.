@@ -74,7 +74,7 @@
 
                         
                     </div>
-                    <a href="#" onclick ="toggle()"class="col" >
+                    <a href="#" onclick =toggle() class="col" >
                         <h2 style=" font-size: 90px; margin-left:70px; font-family: 'Heebo', sans-serif;"> <b>Create a post</b></h2><br>
                         <p style=" margin-left:70px; font-family: Courier; color: black; "><b>click</b> to upload pictures of your room.<br>
                             Add a description of the suggested design theme, dimensions<br> and any specific instructions. Let the designers do the magic.
@@ -121,44 +121,45 @@
                             <div class="radiogroup">
                                 <div class="wrapper">
                                   <input class="state" type="radio" name="app" id="a" value="a">
+                                  
                                   <label class="label" for="a">
-                                    <div class="indicator"></div>
-                                    <span class="text"><h1>Expert</h1>
-                                        <p>
+                                   
+                                    <span class="text">Expert
+                                        
                                             1 Room<br>
                                             Size: 14x14 or less<br>
                                             Design Revisions: N/A<br>
                                             Furniture Purchase Links Avaialble<br>
-                                            <h5>Price: $79.99</h5>                    
-                                        </p></span>
+                                            Price: $79.99                   
+                                        </span>
                                   </label>
                                 </div>
                                 <div class="wrapper">
                                   <input class="state" type="radio" name="app" id="b" value="b">
                                   <label class="label" for="b">
-                                    <div class="indicator"></div>
-                                    <span class="text">  <h1>Premium</h1>
-                                        <p>
+                                   
+                                    <span class="text">  Premium
+                                        
                                             1 Room<br>
                                             Size: Greater than 14x14<br>
                                             Design Revisions: Yes<br>
                                             Furniture Purchase Links Available<br>
-                                            <h5>Price: $99.99</h5>
-                                        </p></span>
+                                            Price: $99.99
+                                        </span>
                                   </label>
                                 </div>
                                 <div class="wrapper">
                                   <input class="state" type="radio" name="app" id="c" value="c">
                                   <label class="label" for="c">
-                                    <div class="indicator"></div>
-                                    <span class="text"> <h1>Deluxe</h1>
-                                        <p>
+                                    
+                                    <span class="text"> Deluxe
+                                        
                                             Up to 4 Rooms<br>
                                             Size: Any Size<br>
                                             Design Revisions: Yes<br>
                                             Furniture Purchase Links Available<br>
-                                            <h5>Price: $300.00</h5>
-                                        </p></span>
+                                            Price: $300.00
+                                        </span>
                                   </label>
                                 </div>
                                
@@ -172,7 +173,7 @@
                             <div class="container">
                                 <div class="box">
                                    <div class="imgBx">
-                                       <img src="images/creditcard.png">
+                                       <img src="images/creditcard.png" alt ="Image of credit card">
                                    </div>
                                    <div class="contentBx">
                                     
@@ -202,7 +203,7 @@
                                         <label for="dis" style="font-size: 30px; font-weight: bolder;">Description</label><br>
                                         <p style="font-size: 13px;">You may enter information like color preference, style preference etc. Please keep in mind, it is up to designer whether to use these recommendations or not. If you opted for Premium or Delux you are eligible for revisions.</p>
                                         <textarea name="message" rows="7" cols="70" id="dis" style="width: 100%;"></textarea>
-                                        <input type="submit" nam="upload" value="Upload" class="popupButton" >
+                                        <input type="submit" name="upload" value="Upload" class="popupButton" >
                                     </form>
                             </div>
                            
