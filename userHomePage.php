@@ -178,7 +178,7 @@
                                   <input class="state" type="radio" name="app" id="c" value="c">
                                   <label class="label" for="c">
                                     
-                                    <span class="text"><h1>Deluxe</h1>
+                                    <span class="text"><h1>Luxe</h1>
                                     <p>
                                         1 Room<br>
                                         Size: Any Size<br>
