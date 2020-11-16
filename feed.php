@@ -46,13 +46,13 @@
 
             <?php
                 include("database/config.php");
-                $login = 8002;
+                $empID = $_SESSION["empID"];
                 $query="SELECT postID, pictures, type, dimensions, color, description FROM indyFeed INNER JOIN project ON indyFeed.projectID = project.ProjectID;";
                 $sql=mysqli_query($connection, $query);
                 $roomInfo=array();
                 while ($row_room=mysqli_fetch_assoc($sql))
                     $roomInfo[]=$row_room;
-                $postsQuery="SELECT postID, employee.empID FROM employee INNER JOIN feedEmployee ON employee.empID = feedEmployee.empID WHERE loginID = $login;";
+                $postsQuery="SELECT postID FROM feedEmployee WHERE empID = '502';";
                 $sql=mysqli_query($connection, $postsQuery);
                 $postsArray=array();
                 while ($post=mysqli_fetch_assoc($sql))
@@ -60,7 +60,27 @@
                 $count = 0;
                 $size = count($roomInfo);
                 $numRows = ceil($size/3);
+                $likedArray = array();
+                $unlikedArray = array();
+                
+                function likePost($postID, $empID) {
+                    $sqlLike = "INSERT INTO feedEmployee VALUES ('$postID', '$empID');";
+                    if(@mysqli_query($connection, $sqlLike)) {
+                        echo "success";
+                    } else {
+                        echo "error";
+                    }
+                }
 
+                function dislikePost($postID, $empID) {
+                    $sqlDislike = "DELETE FROM feedEmployee WHERE empID = '$empID' AND postID = '$postID';";
+                    if(@mysqli_query($connection, $sqlDislike)) {
+                        echo "success";
+                    } else {
+                        echo "error";
+                    }
+                }
+                
                 for ($x = 0; $x < $numRows; $x++) {
                     echo "<div class=\"feedRow\">";
                     for ($i = 0; $i < 3; $i++) {
@@ -72,7 +92,7 @@
                             echo "Color: {$roomInfo[$count]['color']}<br>";
                             echo "Description: {$roomInfo[$count]['description']}</p>";
                             echo "<div class=\"heart\">";
-                            echo "<form action=\"\" >";
+                            echo "<form action =\"feed.php\" method=\"post\">";
                             $found = false;
                             for ($y = 0; $y < count($postsArray); $y++) {
                                 if ($roomInfo[$count]['postID'] == $postsArray[$y]['postID']) {
@@ -80,9 +100,15 @@
                                 }
                             }
                             if ($found) {
-                                echo "<input type=\"image\" name=\"dislike\" src=\"images/heart2.png\" class=\"img-fluid\"  alt=\"Dislike\" onClick=\"dislike({$roomInfo[$count]['postID']}, {$postsArray[0]['empID']})\">";
+                                ?>
+                                    <input type='submit' name='button <?php echo $count ?>' value='Button <?php echo $count ?>' style="background: url(/images/heart2.png)" onClick=<?php dislikePost($roomInfo[$count]['postID'], $empID) ?> ; 
+                                <?php
+                                $likedArray[] = $count;
                             } else {
-                                echo "<input type=\"image\" name=\"like\" src=\"images/heart.png\" class=\"img-fluid\" alt=\"Like\" onClick=\"like({$roomInfo[$count]['postID']}, {$postsArray[0]['empID']})\">";
+                                ?>
+                                    <input type='submit' name='button <?php echo $count ?>' value='Button <?php echo $count ?>' style="background: url(/images/heart.png)">
+                                <?php
+                                $unlikedArray[] = $count;
                             }
                             echo "</form>";
                             echo "</div>";
@@ -92,30 +118,32 @@
                     }
                     echo "</div>";
                 }
+                
 
-                function like($postID, $empID) {
-                    $sqlLike = "INSERT INTO feedEmployee VALUES ('$postID', '$empID')";
-                    if(mysqli_query($connection, $sqlLike)) {
-                        echo "success";
-                    } else {
-                        echo "error";
+                
+                for($j = 0; $j < count($likedArray); $j++) {
+                    $index = $likedArray[$j];
+                    if (isset($_POST["button$index"])) {
+                        dislikePost($roomInfo[$index]['postID'], $empID);
                     }
+                    
                 }
 
-                function dislike($postID, $empID) {
-                    $sqlDislike = "DELETE FROM feedEmployee WHERE empID = '$empID' AND postID = '$postID';";
-                    if(mysqli_query($connection, $sqlDislike)) {
-                        echo "success";
-                    } else {
-                        echo "error";
+                for($k = 0; $k < count($unlikedArray); $k++) {
+                    $index = $unlikedArray[$k];
+                    if (isset($_POST["button$index"])) {
+                        likePost($roomInfo[$count]['postID'], $empID);
                     }
+                    
                 }
-
+                
+                
                 mysqli_close($connection);
             ?>
 
         </div>
 
+        </script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
