@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -25,7 +28,7 @@
             <li><a href="feed.php">Feed</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="designer.php">Profile</a></li>
-            <li><a href="#">Sign Out</a></li>
+            <li><a href="signOut.php">Sign Out</a></li>
         </ul>
 
     </nav>
@@ -36,15 +39,39 @@
                 <img src="images/profile1.jpg" class="rounded-circle img-fluid img-thumbnail" alt="Designer"> 
             </div>
             <div class="col-sm-6">
-                    <h4>Jason Mendosa</h4>
-                    Artist from Toronto. Started interior designing 3 years ago. Looking to build my portfolio and to give you a great experience.
+                    <?php
+                        include("database/config.php");
+                        // Check if the logged in user is a designer
+                        if (isset($_SESSION["empID"])){
+                            // Logged in; grab first name, last name, about me, and style from database
+                            $empID = $_SESSION["empID"];
+
+                            $result = @mysqli_query($connection, "select fname, lname, aboutme, style from employee where empID = '$empID'") or die("failed to connect to database" .mysql_error());
+                            // Order: [0] = fname, [1] = lname, [2] = aboutme, [3] = style
+                            $row = mysqli_fetch_row($result);
+
+                            $fname = $row[0];
+                            $lname = $row[1];
+                            $aboutme = $row[2];
+                            $style = $row[3];
+                            echo "<h4>$fname $lname</h4>";
+                            echo "$aboutme";
+                        } else {
+                            echo "You are not logged in";
+                            header("Location: login.php");
+                        }
+                    ?>
             </div>
             <div class="col-sm-4">
-                <div class="progress">
+                <?php
+                    echo "<h4>Style</h4>";
+                    echo "$style";
+                ?>
+                <!-- <div class="progress">
                     <div class="progress-bar" style="width:100%"></div>
                 </div>
                 <h5>Rating:</h5>
-                5/5
+                5/5 -->
             </div>
         </div>
         <div class="row-bottom-margin">

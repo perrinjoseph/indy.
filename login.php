@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xtml1-strict.dtd">
 
@@ -80,10 +84,17 @@
                         $row = mysqli_fetch_row($result);
 
                         if($row[2] == "user"){
+                            $cusResult = @mysqli_query($connection, "select cusID from customer natural join login where username = '$username'");
+                            $cusRow = mysqli_fetch_assoc($cusResult);
+                            $_SESSION['cusID'] = $cusRow['cusID'];
                             header("Location: userHomePage.php");
-                        }
-                        elseif($row[2] == "designer"){
+                        } elseif($row[2] == "designer"){
+                            $empResult = @mysqli_query($connection, "select empID from employee natural join login where username = '$username'");
+                            $empRow = mysqli_fetch_assoc($empResult);
+                            $_SESSION["empID"] = $empRow['empID'];
                             header("Location: feed.php");
+                        } else {
+                            echo "Invalid login";
                         }
 
                         @mysqli_free_result($result);
