@@ -43,7 +43,7 @@
                         include("database/config.php");
                         // Check if the logged in user is a designer
                         if (isset($_SESSION["empID"])){
-                            // Logged in; grab first name, last name, and about me from database
+                            // Logged in; grab first name, last name, about me, and style from database
                             $empID = $_SESSION["empID"];
 
                             $result = @mysqli_query($connection, "select fname, lname, aboutme, style from employee where empID = '$empID'") or die("failed to connect to database" .mysql_error());

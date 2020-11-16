@@ -1,4 +1,6 @@
-
+<?php
+    session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -8,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Indy - Login</title>
+    <title>Indy - User Home Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600&family=Heebo:wght@600;900&family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
@@ -41,7 +43,7 @@
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
             <ul class="navbar-nav ml-auto flex-nowrap">
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="login.php" class="nav-link">Login</a>
                 </li>
                 <li class="nav-item">
                     <a href="about.html" class="nav-link">About</a>
@@ -50,7 +52,7 @@
                     <a href="packages.html" class="nav-link">Packages</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link">Sign Up</a>
+                    <a href="signOut.php" class="nav-link">Sign Out</a>
                 </li>
             </ul>
         </div>
@@ -65,11 +67,33 @@
                         
                     </div>
                     <div id="description" class="col8" >
-                        <p style=" margin-left:70px; font-family: Courier; color: black; "><b>BRIAN PAUL</b><br>
+                        <p style=" margin-left:70px; font-family: Courier; color: black; ">
+                            <?php
+                                include("database/config.php");
+                                // Check if the logged in user is a customer
+                                if (isset($_SESSION["cusID"])){
+                                    // Logged in; grab first name, last name, and about me from database
+                                    $cusID = $_SESSION["cusID"];
+        
+                                    $result = @mysqli_query($connection, "select fname, lname, aboutme from customer where cusID = '$cusID'") or die("failed to connect to database" .mysql_error());
+                                    // Order: [0] = fname, [1] = lname, [2] = aboutme
+                                    $row = mysqli_fetch_row($result);
+        
+                                    $fname = $row[0];
+                                    $lname = $row[1];
+                                    $aboutme = $row[2];
+                                    echo "<b>$fname $lname</b>";
+                                    echo "<br>$aboutme";
+                                } else {
+                                    echo "You are not logged in";
+                                    header("Location: login.php");
+                                }
+                            ?>
+                            <!-- <b>BRIAN PAUL</b><br>
                             I am from dubai. I love minimalism and modern<br>
                             interior design. I am a father of 3 and own a dog.<br>
                             looking for a designer that can maximize my space <br>
-                            at the same time make my home look fantastic<br>
+                            at the same time make my home look fantastic<br> -->
                             
                             
                             </p>
