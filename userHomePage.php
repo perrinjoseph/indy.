@@ -40,9 +40,7 @@
         
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
             <ul class="navbar-nav ml-auto flex-nowrap">
-                <li class="nav-item">
-                    <a href="login.html" class="nav-link">Login</a>
-                </li>
+                
                 <li class="nav-item">
                     <a href="about.html" class="nav-link">About</a>
                 </li>
@@ -119,7 +117,7 @@
                     <div class="slide slide_1">
                         <div class="slide-content">
                             
-                            
+                            <p style="text-align: center; margin-bottom: -3%; padding-top: 5px;">Select A Package</p>
                             <div class="radiogroup">
                                 <div class="wrapper">
                                   <input class="state" type="radio" name="app" id="a" value="a">
@@ -194,10 +192,23 @@
 
                     <div class="slide slide_3">
                         <div class="slide-content">
-                            <h2>
-                                Slide 3
-                            </h2>
-                            <p>Content for slide 3</p>
+                            <div class="uploadform">
+                               
+                                    <form method="post" action="userHomePage.php" enctype="multipart/form-data">
+                                        <label for="title" style="font-size: 30px; font-weight: bolder;">Title </label><br>
+                                        <input type="text" name="title" id="title"><br><br>
+                                        <label for="dimensions" style="font-size: 30px; font-weight: bolder;">Dimensions</label><br>
+                                        <input type="text" name="dimensions" id="dimensions"><br><br>
+                                        <label for="dis" style="font-size: 30px; font-weight: bolder;">Description</label><br>
+                                        <p style="font-size: 13px;">You may enter information like color preference, style preference etc. Please keep in mind, it is up to designer whether to use these recommendations or not. If you opted for Premium or Delux you are eligible for revisions.</p>
+                                        <textarea name="message" rows="7" cols="70" id="dis" style="width: 100%;"></textarea>
+                                        <input type="submit" nam="upload" value="Upload" class="popupButton" >
+                                    </form>
+                            </div>
+                           
+                                
+                                    
+                            
                         </div>
                     </div>
                 </div>
