@@ -39,16 +39,21 @@
 
             <?php
                 include("database/config.php");
+                $login = 8002;
                 $query="SELECT postID, pictures, type, dimensions, color, description FROM indyFeed INNER JOIN project ON indyFeed.projectID = project.ProjectID;";
                 $sql=mysqli_query($connection, $query);
                 $roomInfo=array();
                 while ($row_room=mysqli_fetch_assoc($sql))
                     $roomInfo[]=$row_room;
-                
+                $postsQuery="SELECT postID, employee.empID FROM employee INNER JOIN feedEmployee ON employee.empID = feedEmployee.empID WHERE loginID = $login;";
+                $sql=mysqli_query($connection, $postsQuery);
+                $postsArray=array();
+                while ($post=mysqli_fetch_assoc($sql))
+                    $postsArray[]=$post;
                 $count = 0;
                 $size = count($roomInfo);
                 $numRows = ceil($size/3);
-                
+
                 for ($x = 0; $x < $numRows; $x++) {
                     echo "<div class=\"feedRow\">";
                     for ($i = 0; $i < 3; $i++) {
@@ -59,17 +64,47 @@
                             echo "Dimensions: {$roomInfo[$count]['dimensions']}<br>";
                             echo "Color: {$roomInfo[$count]['color']}<br>";
                             echo "Description: {$roomInfo[$count]['description']}</p>";
-                            echo "<div class=\"heart float-right\">";
-                            echo "<a href=\"#\">";
-                            echo "<img src=\"images/heart.png\" class=\"img-fluid\" alt=\"Like\">";
-                            echo "</a>";
+                            echo "<div class=\"heart\">";
+                            echo "<form action=\"\" >";
+                            $found = false;
+                            for ($y = 0; $y < count($postsArray); $y++) {
+                                if ($roomInfo[$count]['postID'] == $postsArray[$y]['postID']) {
+                                    $found = true;
+                                }
+                            }
+                            if ($found) {
+                                echo "<input type=\"image\" name=\"dislike\" src=\"images/heart2.png\" class=\"img-fluid\"  alt=\"Dislike\" onClick=\"dislike({$roomInfo[$count]['postID']}, {$postsArray[0]['empID']})\">";
+                            } else {
+                                echo "<input type=\"image\" name=\"like\" src=\"images/heart.png\" class=\"img-fluid\" alt=\"Like\" onClick=\"like({$roomInfo[$count]['postID']}, {$postsArray[0]['empID']})\">";
+                            }
+                            echo "</form>";
                             echo "</div>";
                             echo "</div>";
                             $count = $count + 1;
-                        }
+                        } 
                     }
                     echo "</div>";
                 }
+
+                function like($postID, $empID) {
+                    $sqlLike = "INSERT INTO feedEmployee VALUES ('$postID', '$empID')";
+                    if(mysqli_query($connection, $sqlLike)) {
+                        echo "success";
+                    } else {
+                        echo "error";
+                    }
+                }
+
+                function dislike($postID, $empID) {
+                    $sqlDislike = "DELETE FROM feedEmployee WHERE empID = '$empID' AND postID = '$postID';";
+                    if(mysqli_query($connection, $sqlDislike)) {
+                        echo "success";
+                    } else {
+                        echo "error";
+                    }
+                }
+
+                mysqli_close($connection);
             ?>
 
         </div>
