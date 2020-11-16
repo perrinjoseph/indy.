@@ -22,15 +22,41 @@
 
 <body>
 
-    <nav class="menu">
+<nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
+        <div class="d-flex flex-grow-1">
+            <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+            <a class="navbar-brand" href="#">
+                indy.
+            </a>
+            <div class="w-100 text-right">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar7" >
+                    <span class="navbar-toggler-icon" ></span>
+                </button>
+            </div>
+        </div>
+        
+        
+        
 
-        <ul>
-            <li><a href="feed.php">Feed</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="designer.php">Profile</a></li>
-            <li><a href="signOut.php">Sign Out</a></li>
-        </ul>
-
+        
+        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+              
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="feed.php" class="nav-link">Feed</a>
+                </li>
+                <li class="nav-item">
+                    <a href="designer.php" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="signOut.php" class="nav-link">Sign Out</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <div class="container-fluid">
@@ -98,12 +124,15 @@
             // Display up to 3 images and then place a new row, then repeat until out of images
             for($i = 0; $i < $numRows; $i++) {
                 echo "<div class='row-bottom-margin'>";
-                for($x=0; $x < 3; $x++) {
-                    if($imageIndex < $numImages) {
-
+                for($x=0; $x < 3; $x++) 
+                {
+                    if($imageIndex < $numImages) 
+                    {
+                      
         ?>
+        
                     <div class="col-sm-4">
-                        <img src=<?php echo "$images[$imageIndex]";?> class="img-fluid" alt="Room">
+                        <img src=<?php echo "$images[$imageIndex]";?> class=" img-fluid" alt="Room" >
                         <?php $imageIndex++; ?>
                     </div>
         <?php
@@ -113,7 +142,8 @@
             }
         ?>
     </div>
-    
+   
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
