@@ -46,15 +46,40 @@
 
             <?php
                 include("database/config.php");
+                $empID = $_SESSION["empID"];
                 $query="SELECT postID, pictures, type, dimensions, color, description FROM indyFeed INNER JOIN project ON indyFeed.projectID = project.ProjectID;";
                 $sql=mysqli_query($connection, $query);
                 $roomInfo=array();
                 while ($row_room=mysqli_fetch_assoc($sql))
                     $roomInfo[]=$row_room;
-                
+                $postsQuery="SELECT postID FROM feedEmployee WHERE empID = '502';";
+                $sql=mysqli_query($connection, $postsQuery);
+                $postsArray=array();
+                while ($post=mysqli_fetch_assoc($sql))
+                    $postsArray[]=$post;
                 $count = 0;
                 $size = count($roomInfo);
                 $numRows = ceil($size/3);
+                $likedArray = array();
+                $unlikedArray = array();
+                
+                function likePost($postID, $empID) {
+                    $sqlLike = "INSERT INTO feedEmployee VALUES ('$postID', '$empID');";
+                    if(@mysqli_query($connection, $sqlLike)) {
+                        echo "success";
+                    } else {
+                        echo "error";
+                    }
+                }
+
+                function dislikePost($postID, $empID) {
+                    $sqlDislike = "DELETE FROM feedEmployee WHERE empID = '$empID' AND postID = '$postID';";
+                    if(@mysqli_query($connection, $sqlDislike)) {
+                        echo "success";
+                    } else {
+                        echo "error";
+                    }
+                }
                 
                 for ($x = 0; $x < $numRows; $x++) {
                     echo "<div class=\"feedRow\">";
@@ -66,21 +91,50 @@
                             echo "Dimensions: {$roomInfo[$count]['dimensions']}<br>";
                             echo "Color: {$roomInfo[$count]['color']}<br>";
                             echo "Description: {$roomInfo[$count]['description']}</p>";
-                            echo "<div class=\"heart float-right\">";
-                            echo "<a href=\"#\">";
-                            echo "<img src=\"images/heart.png\" class=\"img-fluid\" alt=\"Like\">";
-                            echo "</a>";
+                            echo "<div class=\"heart\">";
+                            echo "<form  method=\"post\">";
+                            $postID = $roomInfo[$count]['postID'];
+                            $found = false;
+                            for ($y = 0; $y < count($postsArray); $y++) {
+                                if ($roomInfo[$count]['postID'] == $postsArray[$y]['postID']) {
+                                    $found = true;
+                                }
+                            }
+                            if ($found) {
+                                echo "<input type='hidden' name='postID' value='$postID'>";
+                                echo "<input type='hidden' name='count' value='$count'>";
+                                echo "<input name='button$count' 
+                                      type='image'  
+                                      src='images/heart2.png'
+                                      alt='Dislike'
+                                      class='img-fluid'
+                                      onClick=''; formaction = 'unlikePost.php'; formmethod = 'post'; this.form.submit() >";
+                            } else {
+                                echo "<input type='hidden' name='postID' value='$postID'>";
+                                echo "<input type='hidden' name='count' value='$count'>";
+                                echo "<input name='button$count' 
+                                      type='image'
+                                      src='images/heart.png'
+                                      alt='Like'
+                                      class='img-fluid'
+                                      onClick=''; formaction = 'likePost.php'; formmethod = 'post'; this.form.submit() \">";
+                            }
+
+                            echo "</form>";
                             echo "</div>";
                             echo "</div>";
                             $count = $count + 1;
-                        }
+                        } 
                     }
                     echo "</div>";
                 }
+                
+                mysqli_close($connection);
             ?>
 
         </div>
 
+        </script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
