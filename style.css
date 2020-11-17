@@ -845,3 +845,21 @@ textarea
    color: black;
    font-family: 'Poppins', sans-serif;
 }
+
+.explore 
+{
+
+height: 100%;
+width: 70%;
+padding: 50px;
+align-items: center;
+justify-content: center;
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+display: block;
+border-radius: 60px;
+    background: #D7D7D7;
+    box-shadow: 33px 33px 66px #b7b7b7,
+        -33px -33px 66px #f7f7f7;
+}

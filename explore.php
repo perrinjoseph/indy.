@@ -67,8 +67,21 @@
      $size = count($employeeInfo);
      for($i=0; $i<$size; $i++)
      {
-        echo "first Name: {$employeeInfo[$i]['fname']}<br>";
 
+       ?>
+    
+    <div>
+    <div class="explore">
+
+       
+        <?php
+            echo "first Name: {$employeeInfo[$i]['fname']}<br>";
+        ?>
+
+    </div><br>
+     </div>
+
+    <?php
      }
 
 
