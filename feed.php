@@ -101,18 +101,15 @@
                                 }
                             }
                             if ($found) {
-                                $_SESSION['postID'] = $roomInfo[$count]['postID'];
-                                $_SESSION['count'] = $count;
+                                echo "<input type='hidden' name='postID' value='$postID'>";
+                                echo "<input type='hidden' name='count' value='$count'>";
                                 echo "<input name='button$count' 
                                       type='image'  
                                       src='images/heart2.png'
                                       alt='Dislike'
                                       class='img-fluid'
-                                      onClick=''; formaction = 'likePost.php'; formmethod = 'post'; this.form.submit() >";
-                                echo $count;
-                                //$likedArray[] = $count;
+                                      onClick=''; formaction = 'unlikePost.php'; formmethod = 'post'; this.form.submit() >";
                             } else {
-                                $_SESSION['postID'] = $roomInfo[$count]['postID'];
                                 echo "<input type='hidden' name='postID' value='$postID'>";
                                 echo "<input type='hidden' name='count' value='$count'>";
                                 echo "<input name='button$count' 
@@ -121,25 +118,7 @@
                                       alt='Like'
                                       class='img-fluid'
                                       onClick=''; formaction = 'likePost.php'; formmethod = 'post'; this.form.submit() \">";
-                                echo $count;
-                                //$unlikedArray[] = $count;
                             }
-
-                            /*
-                            for($j = 0; $j < count($likedArray); $j++) {
-                                $index = $likedArray[$j];
-                                if (isset($_POST["button$index"])) {
-                                    dislikePost($roomInfo[$index]['postID'], $empID);
-                                }
-                            }
-            
-                            for($k = 0; $k < count($unlikedArray); $k++) {
-                                $index = $unlikedArray[$k];
-                                if (isset($_POST["button$index"])) {
-                                    likePost($roomInfo[$count]['postID'], $empID);
-                                }
-                            }
-                            */
 
                             echo "</form>";
                             echo "</div>";
