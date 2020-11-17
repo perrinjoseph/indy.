@@ -50,8 +50,12 @@
                     <a href="packages.html" class="nav-link">Packages</a>
                 </li>
                 <li class="nav-item">
+                    <a href="explore.php" class="nav-link">Explore</a>
+                </li>
+                <li class="nav-item">
                     <a href="signOut.php" class="nav-link">Sign Out</a>
                 </li>
+                
             </ul>
         </div>
     </nav>
