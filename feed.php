@@ -52,7 +52,7 @@
                 $roomInfo=array();
                 while ($row_room=mysqli_fetch_assoc($sql))
                     $roomInfo[]=$row_room;
-                $postsQuery="SELECT postID FROM feedEmployee WHERE empID = '502';";
+                $postsQuery="SELECT postID FROM feedEmployee WHERE empID = '$empID';";
                 $sql=mysqli_query($connection, $postsQuery);
                 $postsArray=array();
                 while ($post=mysqli_fetch_assoc($sql))
