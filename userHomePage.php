@@ -226,21 +226,42 @@
                         <div class="slide-content">
                             <div class="uploadform">
                                
-                                    <form method="post" action="userHomePage.php" enctype="multipart/form-data">
-                                        <label for="title" style="font-size: 30px; font-weight: bolder;">Title </label><br>
-                                        <input type="text" name="title" id="title"><br><br>
+                                    <form  action="userHomePage.php" method="POST" enctype="multipart/form-data">
+                                        
+                                    <label for="type" style="font-size: 30px; font-weight: bolder;">Room Type</label><br>
+                                        <p style="font-size: 13px;">Please select a room type</p>
+                                        
+                                        <input type="radio" id="bedroom" name="type" value="bedroom">
+                                        <label for="bedroom">Bedroom</label><br>
+                                        <input type="radio" id="bathroom" name="type" value="bathroom">
+                                        <label for="bathroom">Bathroom</label><br>
+                                        <input type="radio" id="livingroom" name="type" value="livingroom">
+                                        <label for="livingroom">Living Room</label><br>
+                                        <hr width="80%">
                                         <label for="dimensions" style="font-size: 30px; font-weight: bolder;">Dimensions</label><br>
+                                        <p style="font-size: 13px;">Enter room dimentions as Length X Width </p>
                                         <input type="text" name="dimensions" id="dimensions"><br><br>
-                                        <label for="dis" style="font-size: 30px; font-weight: bolder;">Description</label><br>
-                                        <p style="font-size: 13px;">You may enter information like color preference, style preference etc. Please keep in mind, it is up to designer whether to use these recommendations or not. If you opted for Premium or Delux you are eligible for revisions.</p>
-                                        <textarea name="message" rows="7" cols="70" id="dis" style="width: 100%;"></textarea>
-                                        <input type="submit" name="upload" value="Upload" class="popupButton" >
+                                       
+                                        <input type="file" name="image" ><br>
+                                        <hr width="80%">
+                                        <label for="description" style="font-size: 30px; font-weight: bolder;">Design Type</label><br>
+                                        <p style="font-size: 13px;">Please select a design preference.</p>
+                                        <input type="radio" id="minimalism" name="description" value="minimalism">
+                                        <label for="minimalism">Minimalism</label><br>
+                                        <input type="radio" id="rustic" name="description" value="rustic">
+                                        <label for="rustic">Rustic</label><br>
+                                        <input type="radio" id="modern" name="description" value="modern">
+                                        <label for="modern">Modern</label>
+                                        <hr width="80%">
+                                        <label for="color" style="font-size: 30px; font-weight: bolder;">Color</label><br>
+                                        <p style="font-size: 13px;">This is just a suggestion. The designer has the option of changing the color as per their will. </p>
+                                        <input type="text" name="color" id="color">
+                                        <hr width="80%">
+                                        <button type="submit" name="submit" value="Upload" class="popupButton">Upload</button>
                                     </form>
+
+                                   
                             </div>
-                           
-                                
-                                    
-                            
                         </div>
                     </div>
                 </div>
@@ -262,7 +283,97 @@
 
     
 </div>
+<?php
+ include("database/config.php");                                   
+                                    if(isset($_POST['submit']))
+                                    {
+                                        //storing the file
+                                        $file = $_FILES['image'];
+                                        //storing information from the file 
+                                        $fileName = $_FILES['image']['name'];
+                                        $fileTmpName = $_FILES['image']['tmp_name'];
+                                        $fileSize = $_FILES['image']['size'];
+                                        $fileError = $_FILES['image']['error'];
+                                        $fileType = $_FILES['image']['type'];
 
+                                        //Seperating the file name so we have the name and the format
+                                        $fileExt = explode('.', $fileName);
+                                        $fileActualExt = strtolower(end($fileExt));
+                                        // create an array that has only the type of files we wish to allow the user to upload
+                                        $allowed = array('jpg','jpeg','png','pdf');
+                                        
+                                        // check if any of the extensions in the array- $allowed are present in the $fileActualExt
+                                        if(in_array($fileActualExt, $allowed))
+                                        {
+                                            if($fileError ===0)
+                                            {
+                                                if($fileSize < 1000000000)
+                                                {
+                                                    //create unique id for each image so that it dosnt replace any image that has the same name 
+                                                    $fileNameNew = uniqid('',true).".".$fileActualExt;
+                                                    $fileDestination = 'images/bedrooms/'.$fileNameNew;
+                                                    //move the file from the temp location to actual location
+                                                    move_uploaded_file($fileTmpName, $fileDestination);
+                                                    //assigning all the variables to the form inputs
+                                                    $type= $_POST['type'];
+                                                    $dimensions = $_POST['dimensions'];
+                                                    $description = $_POST['description'];
+                                                    $color = $_POST['color'];
+                                                    //this is a unique identifier therefore pictures uploaded by two customers with the same 
+                                                    //picture name will not replace the existing picture. 
+                                                    $pictures = "http://localhost/indy/images/bedrooms/$fileNameNew";
+                                                    
+                                                    $cusID = $_SESSION["cusID"];   
+                                                    //inserting the immage link with all the information in the project table
+                                                    $sql = "INSERT INTO project (pictures, type, dimensions, color, description, cusID) VALUES ('$pictures','$type','$dimensions','$color','$description','$cusID') ";
+                                                    if(mysqli_query($connection,$sql))
+                                                    {
+                                                        echo "Record Added Successfully";
+                                                    }
+                                                    else{
+                                                        echo "ERROR: Could not execute and add record. " . mysqli_error($connection);
+
+                                                    }
+                                                    //retrieving the cusID and the projectID for this specific pic.
+                                                    $query = "SELECT cusID, projectID FROM project WHERE pictures ='$pictures'";
+                                                    $sql=mysqli_query($connection, $query);
+                                                    $projectInfo=array();
+                                                    while ($row_cus=mysqli_fetch_assoc($sql))
+                                                    {
+                                                        $projectInfo[]=$row_cus;
+
+                                                    
+                                                    }
+                                                    //inserting the cusID and the project id into the indeeFeed table. 
+                                                    $sql = "INSERT INTO indyFeed (cusID, projectID) VALUES ({$projectInfo[0]['cusID']}, {$projectInfo[0]['projectID']})";
+                                                    if(mysqli_query($connection,$sql))
+                                                    {
+                                                        echo "Record Added Successfully in the indy feed";
+                                                    }
+                                                    else{
+                                                        echo "ERROR: Could not execute and add record to the indy feed " . mysqli_error($connection);
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "Error Your file is too big.";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                echo"There was an error uploading your image.";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            echo "Error. The file is not an image. Please upload an image.";
+                                        }
+                                    }
+
+
+                                    @mysqli_close($connection);
+                                    ?>
 </body>
 <script type="text/javascript" src="vanilla-tilt.js"></script>
 <script type="text/javascript">
