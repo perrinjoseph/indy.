@@ -284,7 +284,7 @@
     
 </div>
 <?php
-                                    
+ include("database/config.php");                                   
                                     if(isset($_POST['submit']))
                                     {
                                         //storing the file
@@ -307,14 +307,53 @@
                                         {
                                             if($fileError ===0)
                                             {
-                                                if($fileSize < 80000)
+                                                if($fileSize < 1000000000)
                                                 {
                                                     //create unique id for each image so that it dosnt replace any image that has the same name 
                                                     $fileNameNew = uniqid('',true).".".$fileActualExt;
                                                     $fileDestination = 'images/bedrooms/'.$fileNameNew;
                                                     //move the file from the temp location to actual location
                                                     move_uploaded_file($fileTmpName, $fileDestination);
+                                                    //assigning all the variables to the form inputs
+                                                    $type= $_POST['type'];
+                                                    $dimensions = $_POST['dimensions'];
+                                                    $description = $_POST['description'];
+                                                    $color = $_POST['color'];
+                                                    //this is a unique identifier therefore pictures uploaded by two customers with the same 
+                                                    //picture name will not replace the existing picture. 
+                                                    $pictures = "http://localhost/indy/images/bedrooms/$fileNameNew";
                                                     
+                                                    $cusID = $_SESSION["cusID"];   
+                                                    //inserting the immage link with all the information in the project table
+                                                    $sql = "INSERT INTO project (pictures, type, dimensions, color, description, cusID) VALUES ('$pictures','$type','$dimensions','$color','$description','$cusID') ";
+                                                    if(mysqli_query($connection,$sql))
+                                                    {
+                                                        echo "Record Added Successfully";
+                                                    }
+                                                    else{
+                                                        echo "ERROR: Could not execute and add record. " . mysqli_error($connection);
+
+                                                    }
+                                                    //retrieving the cusID and the projectID for this specific pic.
+                                                    $query = "SELECT cusID, projectID FROM project WHERE pictures ='$pictures'";
+                                                    $sql=mysqli_query($connection, $query);
+                                                    $projectInfo=array();
+                                                    while ($row_cus=mysqli_fetch_assoc($sql))
+                                                    {
+                                                        $projectInfo[]=$row_cus;
+
+                                                    
+                                                    }
+                                                    //inserting the cusID and the project id into the indeeFeed table. 
+                                                    $sql = "INSERT INTO indyFeed (cusID, projectID) VALUES ({$projectInfo[0]['cusID']}, {$projectInfo[0]['projectID']})";
+                                                    if(mysqli_query($connection,$sql))
+                                                    {
+                                                        echo "Record Added Successfully in the indy feed";
+                                                    }
+                                                    else{
+                                                        echo "ERROR: Could not execute and add record to the indy feed " . mysqli_error($connection);
+
+                                                    }
                                                 }
                                                 else
                                                 {
@@ -333,7 +372,7 @@
                                     }
 
 
-                                    
+                                    @mysqli_close($connection);
                                     ?>
 </body>
 <script type="text/javascript" src="vanilla-tilt.js"></script>
