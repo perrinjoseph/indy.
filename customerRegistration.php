@@ -123,7 +123,7 @@
                                     $sqlLogin = "INSERT INTO login (username, psword, type) VALUES ('$username', aes_encrypt('$psword', 'indy'), 'user')";
 									@mysqli_query($connection, $sqlLogin);
 									
-									$loginQuery = "SELECT loginID from login where username LIKE('$username')";
+									$loginQuery = "SELECT loginID from login where username=('$username')";
 									$loginID = @mysqli_query($connection, $loginQuery);
 									$row = mysqli_fetch_row($loginID);
 									$id = $row[0];
