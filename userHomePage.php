@@ -21,7 +21,7 @@
 	<body>
 		<div class="content" id="blur">
 			<nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
-				<div class="d-flex flex-grow-1"> <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span> <a class="navbar-brand" href="#">
+				<div class="d-flex flex-grow-1"> <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span> <a class="navbar-brand" href="userHomePage.php">
                 indy.
             </a>
 					<div class="w-100 text-right">
@@ -36,7 +36,7 @@
 						<li class="nav-item"> <a href="signOut.php" class="nav-link">Sign Out</a> </li>
 					</ul>
 				</div>
-			</nav> ✔️
+			</nav>
 			<div class="row">
 				<div class="col3"> </div>
 				<div id="description" class="col8">

@@ -28,7 +28,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
         <div class="d-flex flex-grow-1">
             <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="login.php">
                 indy.
             </a>
             <div class="w-100 text-right">
@@ -40,16 +40,10 @@
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
             <ul class="navbar-nav ml-auto flex-nowrap">
                 <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
                     <a href="about.html" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
                     <a href="packages.html" class="nav-link">Packages</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Sign Up</a>
                 </li>
             </ul>
         </div>
