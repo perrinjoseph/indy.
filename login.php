@@ -115,7 +115,7 @@
                     build a strong portfolio, work <br>with clients, earn money
                     and grow your <br>business.<br> </p>
 
-                <a href='register.html'>
+                <a href='designerRegistration.php'>
                     <button style=" margin-left:300px;  border: none;
                         outline: none; border-radius: 10px;
                         background: #6FD6FF;
@@ -124,7 +124,7 @@
                         padding: 10px;	
 	                ">Designer</button>
                 </a>
-                <a href='register.html'>
+                <a href='customerRegistration.php'>
                     <button style=" margin-left:10px;  border: none;
                         outline: none; border-radius: 10px;
                         background: #6FD6FF;
