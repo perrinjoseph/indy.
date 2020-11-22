@@ -21,6 +21,149 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+   <style>
+
+          
+.row {
+    height: 100%;
+    background-color: #D7D7D7;
+    width: 100%;
+    max-width:1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: auto;
+}
+
+.row-bottom-margin {
+    margin-bottom:30px; 
+    height: 100%;
+    background-color: #D7D7D7;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.row .form {
+   
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D7D7D7;
+    margin:10%;
+    padding: 6%;
+    height: 100%;
+    width: 100%;
+    border-radius: 60px;
+    background: #D7D7D7;
+    box-shadow: 33px 33px 66px #b7b7b7,
+        -33px -33px 66px #f7f7f7;
+        justify-content: center;   
+}
+
+.row .form h1 {
+    margin-bottom: 24px;
+    margin-top: 7px;
+    font-size: 40px;
+    text-align: center;
+
+}
+
+.row .form input {
+    outline: none;
+    border: none;
+    margin-bottom: 30px;
+    font-size: 12px;
+    padding: 13px;
+    width: 100%;
+    
+    font-family: Helvetica;
+
+    border-radius: 68px;
+    background: #D7D7D7;
+    box-shadow: inset 12px 12px 24px #b7b7b7,
+        inset -12px -12px 24px #f7f7f7;
+        
+}
+
+.row .form button {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 12px;
+    margin-top: 20px;
+    width: 120px;
+
+
+    border-radius: 35px;
+    background: #D7D7D7;
+    box-shadow: 12px 12px 24px #b7b7b7,
+        -12px -12px 24px #f7f7f7;
+
+}
+
+.row .form button:hover {
+    border-radius: 35px;
+    background: #D7D7D7;
+    box-shadow: inset 16px 16px 31px #b7b7b7,
+        inset -16px -16px 31px #f7f7f7;
+
+}
+
+.row .package {
+    margin-bottom: 8%;
+    margin-top: 8%;
+    margin-left: 8%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D7D7D7;
+
+    height: 420px;
+    width: 320px;
+    border-radius: 68px;
+    background: #d7d7d7;
+    box-shadow: inset 41px 41px 82px #b7b7b7, 
+            inset -41px -41px 82px #f7f7f7;
+}
+
+.row .package h1 {
+    margin-bottom: 24px;
+    margin-top: 7px;
+    font-size: 40px;
+    text-align: center;
+
+}
+
+.row .package button {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 12px;
+    margin-top: 20px;
+    width: 120px;
+
+    border-radius: 35px;
+    background: #D7D7D7;
+    box-shadow: 12px 12px 24px #b7b7b7,
+        -12px -12px 24px #f7f7f7;
+}
+
+.row .package button:hover {
+    border-radius: 35px;
+    background: #D7D7D7;
+    box-shadow: inset 16px 16px 31px #b7b7b7,
+        inset -16px -16px 31px #f7f7f7;
+}
+
+.row .package form {
+    text-align: center;
+}
+    </style>
 </head>
 
 <body>
@@ -55,19 +198,19 @@
         <form action ="customerRegistration.php" method="post">
                 
                 <h1>Register: Customer</h1>
-                <input type="text" name="fname" placeholder="First Name" required />
-                <input type="text" name="lname" placeholder="Last Name" required />
-                <input type="text" name="street" placeholder="Street Address" required />
-                <input type="text" name="city" placeholder="City" required />
-                <input type="text" name="state" placeholder="State" required />
-                <input type="text" name="zip" placeholder="Zip Code" required />
-                <input type="text" name="email" placeholder="Email" required />
+                <input type="text" name="fname" placeholder="First Name" required /><br>
+                <input type="text" name="lname" placeholder="Last Name" required /><br>
+                <input type="text" name="street" placeholder="Street Address" required /><br>
+                <input type="text" name="city" placeholder="City" required /><br>
+                <input type="text" name="state" placeholder="State" required /><br>
+                <input type="text" name="zip" placeholder="Zip Code" required /><br>
+                <input type="text" name="email" placeholder="Email" required /><br>
               
-                <textarea name="aboutme" rows="5" cols="40" placeholder="Blurb about you" required></textarea>
-                <input type="text" name="username" placeholder="username" required />
-                <input type="password" name="psword" placeholder="password" required />
-                <input type="password" name="retypedPassword" placeholder="re-type password" required />
-                <button type="submit" name="submit">Submit</button>
+                <textarea name="aboutme" rows="5" cols="40" placeholder="Blurb about you" required></textarea><br><br>
+                <input type="text" name="username" placeholder="username" required /><br>
+                <input type="password" name="psword" placeholder="password" required /><br>
+                <input type="password" name="retypedPassword" placeholder="re-type password" required /><br>
+                <button type="submit" name="submit">Submit</button><br>
 
                 <?php
                     //get database login info
