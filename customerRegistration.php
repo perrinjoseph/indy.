@@ -21,6 +21,8 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <link href="registerpage.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -49,25 +51,25 @@
         </div>
     </nav>
 
-    <div class="row">
+    <div class="row" id="registerStyles">
 
         <div class="form">
         <form action ="customerRegistration.php" method="post">
                 
                 <h1>Register: Customer</h1>
-                <input type="text" name="fname" placeholder="First Name" required />
-                <input type="text" name="lname" placeholder="Last Name" required />
-                <input type="text" name="street" placeholder="Street Address" required />
-                <input type="text" name="city" placeholder="City" required />
-                <input type="text" name="state" placeholder="State" required />
-                <input type="text" name="zip" placeholder="Zip Code" required />
-                <input type="text" name="email" placeholder="Email" required />
+                <input type="text" name="fname" placeholder="First Name" required /><br>
+                <input type="text" name="lname" placeholder="Last Name" required /><br>
+                <input type="text" name="street" placeholder="Street Address" required /><br>
+                <input type="text" name="city" placeholder="City" required /><br>
+                <input type="text" name="state" placeholder="State" required /><br>
+                <input type="text" name="zip" placeholder="Zip Code" required /><br>
+                <input type="text" name="email" placeholder="Email" required /><br>
               
-                <textarea name="aboutme" rows="5" cols="40" placeholder="Blurb about you" required></textarea>
-                <input type="text" name="username" placeholder="username" required />
-                <input type="password" name="psword" placeholder="password" required />
-                <input type="password" name="retypedPassword" placeholder="re-type password" required />
-                <button type="submit" name="submit">Submit</button>
+                <textarea name="aboutme" rows="5" cols="40" placeholder="Blurb about you" required></textarea><br>
+                <input type="text" name="username" placeholder="username" required /><br>
+                <input type="password" name="psword" placeholder="password" required /><br>
+                <input type="password" name="retypedPassword" placeholder="re-type password" required /><br>
+                <button type="submit" name="submit">Submit</button><br>
 
                 <?php
                     //get database login info
