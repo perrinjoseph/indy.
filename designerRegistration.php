@@ -90,20 +90,41 @@
                     }
                 ?>
                
-                Style:<span class="error">* <?php echo $styleError;?></span><br>
                 
-                <input type="radio" name="style" <?php if (isset($style) && $style=="rustic") echo "checked";?> value="rustic">Rustic<br>
+                <!-- 
+                <input type="radio" name="style" //if (isset($style) && $style=="rustic") echo "checked";?> value="rustic">Rustic<br>
                
-                <input type="radio" name="style" <?php if (isset($style) && $style=="modern") echo "checked";?> value="modern">Modern<br>
+                <input type="radio" name="style" //if (isset($style) && $style=="modern") echo "checked";?> value="modern">Modern<br>
                
-                <input type="radio" name="style" <?php if (isset($style) && $style=="minimalism") echo "checked";?> value="minimalism">Minimalism<br>
+                <input type="radio" name="style" //if (isset($style) && $style=="minimalism") echo "checked";?> value="minimalism">Minimalism<br>
                 
-                <input type="radio" name="style" <?php if (isset($style) && $style=="contemporary") echo "checked";?> value="contemporary">Contemporary<br>
+                <input type="radio" name="style"  //if (isset($style) && $style=="contemporary") echo "checked";?> value="contemporary">Contemporary<br>
                
-                <input type="radio" name="style" <?php if (isset($style) && $style=="traditional") echo "checked";?> value="traditional">Traditional<br>
-                
+                <input type="radio" name="style"  //if (isset($style) && $style=="traditional") echo "checked";?> value="traditional">Traditional<br>
+                -->
 
                 
+
+                    
+                Select a Style:<span class="error">* <?php echo $styleError;?></span><br>           
+	            <input type="radio" id="rad1" name="style" <?php if (isset($style) && $style=="rustic") echo "checked";?> value="rustic">
+                <label for="rad1">Rustic</label><br> 
+                
+                <input type="radio" id="rad2" name="style" <?php if (isset($style) && $style=="modern") echo "checked";?> value="modern">
+                <label for="rad2">Modern</label><br> 
+
+                <input type="radio" id="rad3" name="style" <?php if (isset($style) && $style=="minimalism") echo "checked";?> value="minimalism">
+                <label for="rad3">Minimalism</label><br> 
+
+                <input type="radio" id="rad4" name="style" <?php if (isset($style) && $style=="contemporary") echo "checked";?> value="contemporary">
+                <label for="rad4">Contemporary</label><br> 
+
+                <input type="radio" id="rad5" name="style" <?php if (isset($style) && $style=="traditional")echo "checked";?> value="traditional">
+                <label for="rad5">Traditional</label><br> 
+
+
+
+
                 
                 <br><br>
 
