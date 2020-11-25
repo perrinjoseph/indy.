@@ -14,10 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600&family=Heebo:wght@600;900&family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <style>
+       
+    </style>
 </head>
 
 <body>
@@ -152,25 +156,43 @@
             }
 
             // Display up to 3 images and then place a new row, then repeat until out of images
-            for($i = 0; $i < $numRows; $i++) {
-                echo "<div class='row-bottom-margin'>";
-                for($x=0; $x < 3; $x++) 
-                {
-                    if($imageIndex < $numImages) 
-                    {
-                      
+           
+            
         ?>
+            <hr width="80%">
+            <div class="gallery-section">
+      <div class="inner-width">
         
-                    <div class="col-sm-4">
-                        <img src=<?php echo "$images[$imageIndex]";?> class=" img-fluid" alt="Room" >
-                        <?php $imageIndex++; ?>
-                    </div>
-        <?php
-                    }
-                }
-                echo "</div>";
+        <div class="gallery">
+            <?php
+            
+            for($x=0; $x < $numImages; $x++){
+            ?>
+          <div class="image" style="display:flex;  object-fit: cover;">
+            <img src=<?php echo"$images[$x]";?> alt="" style="display:flex;  object-fit: cover; padding:2px;">
+            </div>
+            <?php
             }
-        ?>
+            ?>
+          
+
+        
+      </div>
+    </div>
+
+
+  <script>
+    $(".gallery").magnificPopup({
+      delegate: 'a',
+      type: 'image',
+      gallery:{
+        enabled: true
+      }
+    });
+  </script>
+
+
+
     </div>
         </div>
         <div id="popup">
