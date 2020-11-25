@@ -39,9 +39,13 @@
             </div>
         </div>
         
-        
-        
+        <script>
+function myFunction() {
+    location.reload();
+}
+</script>
 
+      
         
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
             <ul class="navbar-nav ml-auto flex-nowrap">
@@ -137,39 +141,55 @@
         <div class="row-bottom-margin">
             <div class="col-sm-12">
                 <h2 class="text-center">Rooms Designed</h2>
+                
             </div>
-        </div>
 
+        </div>
+                        
         <?php
             //Display the room images
+            include("database/config.php");  
+            $empID = $_SESSION["empID"];
+            $sql = "SELECT pic FROM employeesPortfolioImages  WHERE empID = $empID ";
+            $re = mysqli_query($connection,$sql);
+            $imagesArray=array();
+            
+            
+            while ($row= mysqli_fetch_assoc($re))
+            {
+                $imagesArray[]=$row;
+            }
+        
+        
+
             $roomImages = "images/designer-images";
-            $images = glob($roomImages . "/*.jpg");
-            $numImages = sizeof($images);
+            
+            $numImages = sizeof($imagesArray);
+           
             $imageIndex = 0;
 
             //Calculate how many rows are needed based on the number of total images (each row has 3 images)
-            $numRows = 0;
-            if($numImages % 3 == 0) {
-                $numRows = $numImages / 3;
-            } else {
-                $numRows = ($numImages / 3) + 1;
-            }
-
+           
             // Display up to 3 images and then place a new row, then repeat until out of images
            
             
         ?>
+
             <hr width="80%">
+
             <div class="gallery-section">
-      <div class="inner-width">
+
         
-        <div class="gallery">
+      <div class="inner-width">
+      <div class="gallery">
+        
             <?php
+            
             
             for($x=0; $x < $numImages; $x++){
             ?>
           <div class="image" style="display:flex;  object-fit: cover;">
-            <img src=<?php echo"$images[$x]";?> alt="" style="display:flex;  object-fit: cover; padding:2px;">
+            <img src=<?php echo" {$imagesArray[$x]['pic']}";?> alt="" style="display:flex;  object-fit: cover; padding:2px;">
             </div>
             <?php
             }
@@ -191,6 +211,93 @@
     });
   </script>
 
+    
+<form action ='designer.php' method='post' enctype='multipart/form-data'> 
+<input type='file' name='img' style="margin: auto; margin-top: 7%;padding: 40px;display: flex;flex-direction: column; align-items: center; width: 40%;"><br>
+<button class = "col9" style="outline: none; border:none;" type="submit" name="share" value="share">
+            <img src="images/upload.png" alt="" height='50px' width='50px' class="imgbutton ">
+</button>
+</form>
+
+<?php
+//inserting portfolio images into database.
+
+include("database/config.php");                                   
+if(isset($_POST['share'] ))
+{
+   
+    if(isset($_FILES['img']))
+    {
+       
+                //storing the file
+                $file = $_FILES['img'];
+                
+            $fileName = $_FILES['img']['name'];
+            $fileTmpName = $_FILES['img']['tmp_name'];
+            $fileSize = $_FILES['img']['size'];
+            $fileError = $_FILES['img']['error'];
+            $fileType = $_FILES['img']['type'];
+
+            //Seperating the file name so we have the name and the format
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+            // create an array that has only the type of files we wish to allow the user to upload
+            $allowed = array('jpg','jpeg','png','pdf');
+            
+            // check if any of the extensions in the array- $allowed are present in the $fileActualExt
+            if(in_array($fileActualExt, $allowed))
+            {
+                
+                if($fileError ===0)
+                {
+                    if($fileSize < 1000000000)
+                    {
+                        //create unique id for each image so that it dosnt replace any image that has the same name 
+                        $fileNameNew = uniqid('',true).".".$fileActualExt;
+                        $fileDestination = 'images/designer-images/'.$fileNameNew;
+                        //move the file from the temp location to actual location
+                        move_uploaded_file($fileTmpName, $fileDestination);
+                       
+                        
+                        //this is a unique identifier therefore pictures uploaded by two customers with the same 
+                        //picture name will not replace the existing picture. 
+                        $pictures = "http://localhost/indy/images/designer-images/$fileNameNew";
+                        
+                        $empID = $_SESSION["empID"];   
+                        //update the immage link emp porfolio images
+                        $sql = "INSERT INTO employeesPortfolioImages (empID, pic) VALUES ('$empID','$pictures') ";
+                        if(mysqli_query($connection,$sql))
+                        {
+                            
+                        }
+                        else{
+                            echo "ERROR: Could not execute and update image record. " . mysqli_error($connection);
+
+                        }
+                        //updating the employee information in employee table 
+
+                    }
+                    else
+                    {
+                        echo "Error Your file is too big.";
+                    }
+                }
+                else
+                {
+                    echo"There was an error uploading your image.";
+                }
+            }
+            else
+            {
+                echo "Error. The file is not an image. Please upload an image.";
+            }
+
+            
+    }
+}
+
+
+?>
 
 
     </div>
@@ -299,8 +406,13 @@
                                                             
                                                                 if(mysqli_query($connection,$que))
                                                                 {
+                                                                    ?>
+                                                                    <script>
                                                                     
-                                                                }
+                                                                        location.reload();
+                                                                   
+                                                                    </script>
+                                                                <?php }
                                                                 else
                                                                 {
                                                                     echo "ERROR: Could not execute and employee records record. " . mysqli_error($connection);
@@ -357,7 +469,7 @@
 	            <input type='radio' id='rad5' name='style' <?php if($style =='traditional') echo 'checked'; ?> value='traditional'>
                 <label for='rad5'>Traditional</label><br><br>
                <label for='style'><b>Please upload a new picture here</b></label><br>
-               <input type='file' name='image'><br>
+               <input type='file' name='image' id="up"><br>
               
                 <button type="submit" name="submit" value="Upload" class="popupButton">Upload</button>
                 </form>
@@ -384,7 +496,7 @@
                                                 $fileActualExt = strtolower(end($fileExt));
                                                 // create an array that has only the type of files we wish to allow the user to upload
                                                 $allowed = array('jpg','jpeg','png','pdf');
-                                                
+                                                $reload = 0;
                                                 // check if any of the extensions in the array- $allowed are present in the $fileActualExt
                                                 if(in_array($fileActualExt, $allowed))
                                                 {
@@ -421,7 +533,7 @@
                                                         
                                                             if(mysqli_query($connection,$que))
                                                             {
-                                                                
+                                                               
                                                             }
                                                             else
                                                             {
@@ -453,9 +565,12 @@
                                     
 
 
-                    
+                                    
                     echo"</div>";
-                }
+                } 
+
+               
+
             }
             
 
