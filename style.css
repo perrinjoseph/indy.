@@ -878,7 +878,34 @@ border-radius: 60px;
         -33px -33px 66px #f7f7f7;
 }
 
+.popText
+{
+    margin-top: 10px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+.pop form
+{
+    
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-shadow: 2px 2px 8px #676767;
 
+}
+.pop textarea
+{
+    
+    border-radius: 5px;
+background: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    padding-left: 20px;
+    border:none;
+    width: 100%;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
 
-
-/* Styless for the register pages */
+.pop button
+{
+    float: left;
+}

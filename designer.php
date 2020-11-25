@@ -58,13 +58,44 @@
             </ul>
         </div>
     </nav>
-
+    <div class="content" id="blur">
     <div class="container-fluid">
         <div class="row-bottom-margin">
             <div class="col-sm-2">
-                <img src="images/profile1.jpg" class="rounded-circle img-fluid img-thumbnail" alt="Designer"> 
+                <?php
+                //<----------profile picture----------->
+                include("database/config.php");
+                //first check if emp is logged in
+                if(isset($_SESSION["empID"])){
+                    $empID = $_SESSION["empID"];
+                    $q = @mysqli_query($connection,"select picture from employeeProfileImages where empID = '$empID'");
+                    $row = mysqli_fetch_row($q);
+                    //if there is no image for the employee in the database then show the default image. 
+                    //else means there is an image so print the image to the website
+                        if(empty($row))
+                            {
+                                echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
+                            }
+                        else{
+                            echo"<img src='$row[0]' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'><br> ";
+
+                        }
+                }
+                
+                ?>
+                        <a href="#" onclick=toggle()>Edit Profile</a>
+                        
+        <script type="text/javascript">
+		function toggle() {
+			var blur = document.getElementById('blur');
+			blur.classList.toggle('active')
+			var popup = document.getElementById('popup');
+			popup.classList.toggle('active')
+		}
+		</script>
+                
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-10">
                     <?php
                         include("database/config.php");
                         // Check if the logged in user is a designer
@@ -82,17 +113,16 @@
                             $style = $row[3];
                             echo "<h4>$fname $lname</h4>";
                             echo "$aboutme";
+                            echo "<br><br>";
+                            echo "<h4>Style</h4>";
+                              echo "$style";
                         } else {
                             echo "You are not logged in";
                             header("Location: login.php");
                         }
                     ?>
             </div>
-            <div class="col-sm-4">
-                <?php
-                    echo "<h4>Style</h4>";
-                    echo "$style";
-                ?>
+            
                 <!-- <div class="progress">
                     <div class="progress-bar" style="width:100%"></div>
                 </div>
@@ -142,8 +172,157 @@
             }
         ?>
     </div>
-   
+        </div>
+        <div id="popup">
+			<div id="slider">
+            <div id="slides">
+            <div class="close"> <a href="#" onclick="toggle()" class="x">+</a> </div>
+            
+            <?php
+            //was affraid of storing the image in a global variable because of security stuff so i just did this. Please feel free to make the code more efficient
+            if(isset($_SESSION["empID"])){
+                $empID = $_SESSION["empID"];
+                $q = @mysqli_query($connection,"select picture from employeeProfileImages where empID = '$empID'");
+                $result = @mysqli_query($connection, "select fname, lname, aboutme, style from employee where empID = '$empID'") or die("failed to connect to database" .mysql_error());
+                $aRow = mysqli_fetch_row($result);
 
+                $row = mysqli_fetch_row($q);
+                //if there is no image for the employee in the database then show the default image. 
+                //else means there is an image so print the image to the website
+                if(empty($row))
+                    {
+                        echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'>";
+                        
+                    }
+                else{
+                    echo"<br><br><img src='$row[0]' class='rounded-circle mx-auto d-block img-thumbnail' alt='Designer Profile Pic'  width = '23%'>";
+                    echo"<div class = 'pop'>";
+                    echo" <form action ='designer.php' method='post' class = 'popText' enctype='multipart/form-data'>  ";
+                    echo" <label for='aboutme'>About Me</label>";
+                    echo"<textarea name='aboutme' rows='2' cols='40'  placeholder='Blurb about you' id='aboutme'required>$aRow[2]</textarea><br><br>";
+                    echo"<label for='style'><b>Please Select your new style</b></label>";
+                $style = $aRow[3];  
+               
+                echo"<br>";     
+                    ?>
+
+                <input type='radio' id='rad1' name='style' <?php if($style =='rustic') echo 'checked'; ?>  value='rustic'>              
+                <label for='rad1'>Rustic</label><br> 
+	            <input type='radio' id='rad2' name='style'  <?php if($style =='modern') echo 'checked'; ?> value='modern'>
+                <label for='rad2'>Modern</label><br>
+                <input type='radio' id='rad3' name='style' <?php if($style =='minimalism') echo 'checked'; ?> value='minimalism'>
+                <label for='rad3'>Minimalism</label><br> 
+	            <input type='radio' id='rad4' name='style'<?php if($style =='contemporary') echo 'checked'; ?>  value='contemporary'>
+                <label for='rad4'>Contemporary</label><br> 
+	            <input type='radio' id='rad5' name='style' <?php if($style =='traditional') echo 'checked'; ?> value='traditional'>
+                <label for='rad5'>Traditional</label><br><br>
+               <label for='style'><b>Please upload a new picture here</b></label><br>
+               <input type='file' name='image'><br>
+              
+                <button type="submit" name="submit" value="Upload" class="popupButton">Upload</button>
+                </form>
+                    <?php
+
+                                    include("database/config.php");                                   
+                                    if(isset($_POST['submit'] ))
+                                    {
+                                       
+                                        if(isset($_FILES['image']))
+                                        {
+                                           
+                                                    //storing the file
+                                                    $file = $_FILES['image'];
+                                                    
+                                                $fileName = $_FILES['image']['name'];
+                                                $fileTmpName = $_FILES['image']['tmp_name'];
+                                                $fileSize = $_FILES['image']['size'];
+                                                $fileError = $_FILES['image']['error'];
+                                                $fileType = $_FILES['image']['type'];
+
+                                                //Seperating the file name so we have the name and the format
+                                                $fileExt = explode('.', $fileName);
+                                                $fileActualExt = strtolower(end($fileExt));
+                                                // create an array that has only the type of files we wish to allow the user to upload
+                                                $allowed = array('jpg','jpeg','png','pdf');
+                                                
+                                                // check if any of the extensions in the array- $allowed are present in the $fileActualExt
+                                                if(in_array($fileActualExt, $allowed))
+                                                {
+                                                    
+                                                    if($fileError ===0)
+                                                    {
+                                                        if($fileSize < 1000000000)
+                                                        {
+                                                            //create unique id for each image so that it dosnt replace any image that has the same name 
+                                                            $fileNameNew = uniqid('',true).".".$fileActualExt;
+                                                            $fileDestination = 'images/designerProfilePics/'.$fileNameNew;
+                                                            //move the file from the temp location to actual location
+                                                            move_uploaded_file($fileTmpName, $fileDestination);
+                                                            //assigning all the variables to the form inputs
+                                                            $aboutMe= $_POST['aboutme'];
+                                                            $newStyle = $_POST['style'];
+                                                            //this is a unique identifier therefore pictures uploaded by two customers with the same 
+                                                            //picture name will not replace the existing picture. 
+                                                            $pictures = "http://localhost/indy/images/designerProfilePics/$fileNameNew";
+                                                            
+                                                            $empID = $_SESSION["empID"];   
+                                                            //update the immage link employeeProfileImages table
+                                                            $sql = "UPDATE employeeProfileImages SET picture = '$pictures' WHERE empID ='$empID'";
+                                                            if(mysqli_query($connection,$sql))
+                                                            {
+                                                                
+                                                            }
+                                                            else{
+                                                                echo "ERROR: Could not execute and update image record. " . mysqli_error($connection);
+
+                                                            }
+                                                            //updating the employee information in employee table
+                                                            $que = "UPDATE employee SET aboutme ='$aboutMe', style = '$newStyle' WHERE empID = '$empID'";
+                                                        
+                                                            if(mysqli_query($connection,$que))
+                                                            {
+                                                                
+                                                            }
+                                                            else
+                                                            {
+                                                                echo "ERROR: Could not execute and employee records record. " . mysqli_error($connection);
+                                                            }
+
+                                                        }
+                                                        else
+                                                        {
+                                                            echo "Error Your file is too big.";
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        echo"There was an error uploading your image.";
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "Error. The file is not an image. Please upload an image.";
+                                                }
+
+
+                                        }
+                                    }
+
+
+                                    @mysqli_close($connection);
+                                    
+
+
+                    
+                    echo"</div>";
+                }
+            }
+            
+
+?>            
+			</div>	
+			</div>
+		</div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
