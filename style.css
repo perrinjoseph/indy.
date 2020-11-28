@@ -878,3 +878,144 @@ border-radius: 60px;
         -33px -33px 66px #f7f7f7;
 }
 
+.popText
+{
+    margin-top: 10px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+.pop form
+{
+    
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-shadow: 2px 2px 8px #676767;
+
+}
+.pop textarea
+{
+    
+    border-radius: 5px;
+background: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    padding-left: 20px;
+    border:none;
+    width: 100%;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.pop button
+{
+    float: left;
+}
+
+
+
+/* concept taken from. file:///C:/Users/PERRIN~1/AppData/Local/Temp/Rar$EXa20208.39368/Gallery%20Section/index.html*/
+.gallery-section{
+    width: 100%;
+    padding: 60px 0;
+    background: #D7D7D7;
+  }
+  
+  .inner-width{
+    width: 100%;
+    max-width: 1550px;
+    margin: auto;
+    padding: 0 20px;
+  }
+  
+  .gallery-section h1{
+    text-align: center;
+    text-transform: uppercase;
+    color: #333;
+  }
+  
+  .border{
+    width: 180px;
+    height: 4px;
+    background: #333;
+    margin: 60px auto;
+  }
+  
+  .gallery-section .gallery{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
+  
+  .gallery-section .image{
+    flex: 25%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .gallery-section .image img{
+    width: 100%;
+    height: 100%;
+    transition: 0.4s;
+  }
+  
+  .gallery-section .image:hover img{
+    transform: scale(1.4);
+    
+    
+  }
+  
+  @media screen and (max-width:960px) {
+    .gallery-section .image{
+      flex: 33.33%;
+    }
+  }
+  
+  @media screen and (max-width:768px) {
+    .gallery-section .image{
+      flex: 50%;
+    }
+  }
+  
+  @media screen and (max-width:480px) {
+    .gallery-section .image{
+      flex: 100%;
+    }
+  }
+  
+
+
+ .imgbutton 
+ {
+  
+     float: left;
+     
+}
+
+.col9
+{
+margin: auto;
+
+margin-bottom: 7%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D7D7D7;
+   
+    height: 100%;
+    width: 40%;
+    border-radius: 20px;
+    background: #D7D7D7;
+    box-shadow: 33px 33px 66px #b7b7b7,
+        -33px -33px 66px #f7f7f7;
+        
+}
+.col9:hover
+{
+    border-radius: 20px;
+    background: #D7D7D7;
+    box-shadow: inset 35px 35px 70px #b7b7b7, 
+                inset -35px -35px 70px #f7f7f7;
+              text-align: left;  
+}
+
+

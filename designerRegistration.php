@@ -8,6 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -21,6 +22,8 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <link href="registerpage.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -49,21 +52,21 @@
         </div>
     </nav>
 
-    <div class="row">
+    <div  class="row" id="registerStyles">
 
         <div class="form">
             <form action ="designerRegistration.php" method="post">
                 
                 <h1>Register: Designer</h1>
-                <input type="text" name="fname" placeholder="First Name" required />
-                <input type="text" name="lname" placeholder="Last Name" required />
-                <input type="text" name="street" placeholder="Street Address" required />
-                <input type="text" name="city" placeholder="City" required />
-                <input type="text" name="state" placeholder="State" required />
-                <input type="text" name="zip" placeholder="Zip Code" required />
-                <input type="text" name="email" placeholder="Email" required />
+                <input type="text" name="fname" placeholder="First Name" required /><br>
+                <input type="text" name="lname" placeholder="Last Name" required /><br>
+                <input type="text" name="street" placeholder="Street Address" required /><br>
+                <input type="text" name="city" placeholder="City" required /><br>
+                <input type="text" name="state" placeholder="State" required /><br>
+                <input type="text" name="zip" placeholder="Zip Code" required /><br>
+                <input type="text" name="email" placeholder="Email" required /><br>
               
-                <textarea name="aboutme" rows="5" cols="40" placeholder="Blurb about you" required></textarea>
+                <textarea name="aboutme" rows="5" cols="40"  placeholder="Blurb about you" required></textarea><br>
 
 
                 <br>
@@ -86,19 +89,43 @@
                         }
                     }
                 ?>
-                Style:<span class="error">* <?php echo $styleError;?></span>
-                <input type="radio" name="style" <?php if (isset($style) && $style=="rustic") echo "checked";?> value="rustic">Rustic
                
-                <input type="radio" name="style" <?php if (isset($style) && $style=="modern") echo "checked";?> value="modern">Modern
-               
-                <input type="radio" name="style" <?php if (isset($style) && $style=="minimalism") echo "checked";?> value="minimalism">Minimalism
                 
-                <input type="radio" name="style" <?php if (isset($style) && $style=="contemporary") echo "checked";?> value="contemporary">Contemporary
+                <!-- 
+                <input type="radio" name="style" //if (isset($style) && $style=="rustic") echo "checked";?> value="rustic">Rustic<br>
                
-                <input type="radio" name="style" <?php if (isset($style) && $style=="traditional") echo "checked";?> value="traditional">Traditional
+                <input type="radio" name="style" //if (isset($style) && $style=="modern") echo "checked";?> value="modern">Modern<br>
+               
+                <input type="radio" name="style" //if (isset($style) && $style=="minimalism") echo "checked";?> value="minimalism">Minimalism<br>
                 
+                <input type="radio" name="style"  //if (isset($style) && $style=="contemporary") echo "checked";?> value="contemporary">Contemporary<br>
+               
+                <input type="radio" name="style"  //if (isset($style) && $style=="traditional") echo "checked";?> value="traditional">Traditional<br>
+                -->
+
                 
 
+                    
+                Select a Style:<span class="error">* <?php echo $styleError;?></span><br>           
+	            <input type="radio" id="rad1" name="style" <?php if (isset($style) && $style=="rustic") echo "checked";?> value="rustic">
+                <label for="rad1">Rustic</label><br> 
+                
+                <input type="radio" id="rad2" name="style" <?php if (isset($style) && $style=="modern") echo "checked";?> value="modern">
+                <label for="rad2">Modern</label><br> 
+
+                <input type="radio" id="rad3" name="style" <?php if (isset($style) && $style=="minimalism") echo "checked";?> value="minimalism">
+                <label for="rad3">Minimalism</label><br> 
+
+                <input type="radio" id="rad4" name="style" <?php if (isset($style) && $style=="contemporary") echo "checked";?> value="contemporary">
+                <label for="rad4">Contemporary</label><br> 
+
+                <input type="radio" id="rad5" name="style" <?php if (isset($style) && $style=="traditional")echo "checked";?> value="traditional">
+                <label for="rad5">Traditional</label><br> 
+
+
+
+
+                
                 <br><br>
 
                 <input type="text" name="username" placeholder="username" required />
