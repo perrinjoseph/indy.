@@ -27,13 +27,18 @@
     $cusInfo = mysqli_fetch_assoc(mysqli_query($connection, $sqlCus));
     
     $to = $cusInfo['email'];
-    $subject = "test";
-    $msg = "yo";
-    $msg = wordwrap($msg, 70);
-    $headers = "FROM: {$empInfo['email']}";
+    $subject = "INDY: Project Design";
+    $msg = "Hello {$cusInfo['name']}, \n\n      My name is {$empInfo['name']} and I am a designer at Indy. I am contacting you to inform you that I have seen your post and am interseted in designing your room. I have included a link to my portoflio page so that you may see some of my previous work and decide if you would like to move forward with me as your designer. Please feel free to respond to this email with your decision.\nNOTE: all future contact with this designer shall be made through this email thread.\n\nThank You,\n{$empInfo['name']}";
+    $msg = wordwrap($msg, 120);
+    $sender = $empInfo['email'];
+    $headers = "FROM: $sender";
 
-    mail($to, $suject, $msg, $headers);
+    if (mail($to, $subject, $msg, $headers)) {
+        echo "mail success";
+    } else {
+        echo "mail error";
+    }
 
-    //header("Location:feed.php");
+    header("Location:feed.php");
     
 ?>
