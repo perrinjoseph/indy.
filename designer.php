@@ -65,14 +65,11 @@
                     $row = mysqli_fetch_row($q);
                     //if there is no image for the employee in the database then show the default image. 
                     //else means there is an image so print the image to the website
-                        if(empty($row))
-                            {
-                                echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
-                            }
-                        else{
-                            echo"<img src='$row[0]' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'><br> ";
-
-                        }
+                    if(mysqli_num_rows($q)==0) {
+                        echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
+                    } else {
+                        echo"<img src='$row[0]' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'><br> ";
+                    }
                 }
                 
                 ?>
