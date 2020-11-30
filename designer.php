@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Indy - Designer Home</title>
+    <title>Indy - Designer Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600&family=Heebo:wght@600;900&family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
@@ -65,14 +65,19 @@
                     $row = mysqli_fetch_row($q);
                     //if there is no image for the employee in the database then show the default image. 
                     //else means there is an image so print the image to the website
-                        if(empty($row))
-                            {
-                                echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
-                            }
-                        else{
-                            echo"<img src='$row[0]' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'><br> ";
+                    if(mysqli_num_rows($q)==0) {
+                        echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
+                    } else {
+                        // Substring to remove 'http://localhost/indy/' from result
+                        $picPath = substr($row[0], 22);
 
+                        // Even if the designer has an image in the database, check if its on the server too
+                        if(file_exists($picPath)) {
+                            echo"<img src='$picPath' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'><br> ";
+                        } else {
+                            echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
                         }
+                    }
                 }
                 
                 ?>

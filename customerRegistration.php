@@ -137,19 +137,13 @@
                                 else{
                                     echo "Passwords don't match!";
                                 }
-                            
                             }
                             else{
                                 echo "Username is taken.";
-                            }
-                        
-                            
-                            
+                            } 
                         }
                         else{
-                            
-                            echo "Email is already registered!";
-                            
+                            echo "Email is already registered!"; 
                         }
 
                         @mysqli_free_result($result);
