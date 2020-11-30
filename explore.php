@@ -35,60 +35,46 @@
                 </button>
             </div>
         </div>
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
-            <ul class="navbar-nav ml-auto flex-nowrap">
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="packages.html" class="nav-link">Packages</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Sign Up</a>
-                </li>
-            </ul>
-        </div>
+
+        <?php
+		    require "customerNav.php";
+        ?>
+        
     </nav>
     <?php
-     include("database/config.php");
-     $query="SELECT * FROM employee;";
-     $sql=mysqli_query($connection, $query);
-     $employeeInfo=array();
-     while ($row_emp=mysqli_fetch_assoc($sql))
-     {
-         $employeeInfo[]=$row_emp;
-
-      
-     }
-     $count = 0;
-     $size = count($employeeInfo);
-     for($i=0; $i<$size; $i++)
-     {
-
-       ?>
-    
-    <div>
-    <div class="explore">
-
-       
-        <?php
-            echo "first Name: {$employeeInfo[$i]['fname']}<br>";
-        ?>
-
-    </div><br>
-     </div>
-
-    <?php
-     }
-
-
-     
+        include("database/config.php");
+        if (isset($_SESSION["cusID"])){
+            $query="SELECT * FROM employee;";
+            $sql=mysqli_query($connection, $query);
+            $employeeInfo=array();
+            while ($row_emp=mysqli_fetch_assoc($sql))
+            {
+                $employeeInfo[]=$row_emp;
+            }
+            $count = 0;
+            $size = count($employeeInfo);
+            for($i=0; $i<$size; $i++)
+            {
     ?>
-
-    
+                <div>
+                <div class="explore">
+                    <?php
+                        echo "<form  method=\"post\">";
+                        echo "<input type='hidden' name='empID' value={$employeeInfo[$i]['empID']}>";
+                        //echo "Designer: {$employeeInfo[$i]['fname']} {$employeeInfo[$i]['lname']}<br>";
+                        echo "<input name='designerPortfolio' 
+                                      type='button'  
+                                      onClick=''; formaction = 'designerPortfolio.php'; formmethod = 'post'; this.form.submit() >";
+                    ?>
+                </div><br>
+                </div>
+            <?php
+            }   
+        } else {
+            echo "You are not logged in";
+            header("Location: login.php");
+        }  
+    ?>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
