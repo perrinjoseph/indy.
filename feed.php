@@ -25,13 +25,31 @@
     </head>
 
     <body>
-        <nav class="menu">
+        <!-- <nav class="menu">
             <ul>
                 <li><a href="feed.php">Feed</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="designer.php">Profile</a></li>
                 <li><a href="signOut.php">Sign Out</a></li>
             </ul>
+        </nav> -->
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
+            <div class="d-flex flex-grow-1">
+                <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+                <a class="navbar-brand" href="feed.php">
+                    indy.
+                </a>
+                <div class="w-100 text-right">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar7" >
+                        <span class="navbar-toggler-icon" ></span>
+                    </button>
+                </div>
+            </div>
+
+            <?php
+                require "designerNav.php";
+            ?>
         </nav>
 
         <div class="container-fluid">

@@ -22,20 +22,17 @@
 		<div class="content" id="blur">
 			<nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
 				<div class="d-flex flex-grow-1"> <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span> <a class="navbar-brand" href="userHomePage.php">
-                indy.
-            </a>
+                	indy.
+            		</a>
 					<div class="w-100 text-right">
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar7"> <span class="navbar-toggler-icon"></span> </button>
 					</div>
 				</div>
-				<div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
-					<ul class="navbar-nav ml-auto flex-nowrap">
-						<li class="nav-item"> <a href="about.html" class="nav-link">About</a> </li>
-						<li class="nav-item"> <a href="packages.html" class="nav-link">Packages</a> </li>
-						<li class="nav-item"> <a href="explore.php" class="nav-link">Explore</a> </li>
-						<li class="nav-item"> <a href="signOut.php" class="nav-link">Sign Out</a> </li>
-					</ul>
-				</div>
+
+				<?php
+					require "customerNav.php";
+				?>
+				
 			</nav>
 			<div class="row">
 				<div class="col3"> </div>
@@ -62,11 +59,7 @@
                                     header("Location: login.php");
                                 }
                             ?>
-							<!-- <b>BRIAN PAUL</b><br>
-                            I am from dubai. I love minimalism and modern<br>
-                            interior design. I am a father of 3 and own a dog.<br>
-                            looking for a designer that can maximize my space <br>
-                            at the same time make my home look fantastic<br> --></p>
+					</p>
 				</div>
 				<a href="#" onclick=toggle() class="col">
 					<h2 style=" font-size: 90px; margin-left:70px; font-family: 'Heebo', sans-serif;"> <b>Create a post</b></h2>
