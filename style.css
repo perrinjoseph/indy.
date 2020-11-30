@@ -124,6 +124,29 @@ a:hover {
 
 }
 
+.explore button {
+    border: none;
+    outline: none;
+    font-size: 20px;
+    padding: 12px;
+    margin-top: 20px;
+    width: 100%;
+
+    border-radius: 35px;
+    background: #D7D7D7;
+    box-shadow: 12px 12px 24px #b7b7b7,
+        -12px -12px 24px #f7f7f7;
+
+}
+
+.explore button:hover {
+    border-radius: 35px;
+    background: #D7D7D7;
+    box-shadow: inset 16px 16px 31px #b7b7b7,
+        inset -16px -16px 31px #f7f7f7;
+
+}
+
 .row .package {
     margin-bottom: 8%;
     margin-top: 8%;
@@ -862,17 +885,16 @@ textarea
 
 .explore 
 {
-
-height: 100%;
-width: 70%;
-padding: 50px;
-align-items: center;
-justify-content: center;
-text-align: center;
-margin-left: auto;
-margin-right: auto;
-display: block;
-border-radius: 60px;
+    height: 100%;
+    width: 70%;
+    padding: 50px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 60px;
     background: #D7D7D7;
     box-shadow: 33px 33px 66px #b7b7b7,
         -33px -33px 66px #f7f7f7;

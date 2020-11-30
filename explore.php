@@ -60,18 +60,10 @@
                 <div class="explore">
                     <?php
                         echo "<form action = 'designerPortfolio.php' method='post'>";
-                        echo "<input type='hidden' name='empID' value={$employeeInfo[$i]['empID']}>";
-                        
-                        //echo "Designer: {$employeeInfo[$i]['fname']} {$employeeInfo[$i]['lname']}<br>";
-                        
+                        echo "<input type='hidden' name='empID' value={$employeeInfo[$i]['empID']}>";                        
                         echo "<button type='submit' name='portfolio'>
                             Designer: {$employeeInfo[$i]['fname']} {$employeeInfo[$i]['lname']}
                             </button>";
-                        
-                        // echo "<input name='designerPortfolio' type='button' 
-                        //     value='Designer: {$employeeInfo[$i]['fname']} {$employeeInfo[$i]['lname']}'
-                        //     onClick=''; formaction = 'designerPortfolio.php'; formmethod = 'post'; this.form.submit()>";
-
                         echo "</form>";
                     ?>
                 </div><br>
