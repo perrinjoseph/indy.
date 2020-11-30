@@ -68,7 +68,15 @@
                     if(mysqli_num_rows($q)==0) {
                         echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
                     } else {
-                        echo"<img src='$row[0]' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'><br> ";
+                        // Substring to remove 'http://localhost/indy/' from result
+                        $picPath = substr($row[0], 22);
+
+                        // Even if the designer has an image in the database, check if its on the server too
+                        if(file_exists($picPath)) {
+                            echo"<img src='$picPath' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'><br> ";
+                        } else {
+                            echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
+                        }
                     }
                 }
                 
