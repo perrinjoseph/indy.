@@ -95,13 +95,13 @@
 									<p style="text-align: center; margin-bottom: -3%; padding-top: 5px;">Select A Package</p>
 									<div class="radiogroup">
 										<div class="wrapper">
-											<input class="state" type="radio" name="app" id="a" value="a">
+											<input class="state" type="radio" name="app" id="a" value="a" required>
 											<label class="label" for="a"> <span class="text"><h1>Expert</h1>
                                     <p>
                                         1 Room<br>
                                         Size: 14x14 or less<br>
                                         Design Revisions: N/A<br>
-                                        Furniture Purchase Links Avaialble<br>
+                                        Furniture Purchase Links Available<br>
                                         <h5>Price: $79.99</h5>                    
                                     </p>               
                                         </span> </label>
@@ -157,7 +157,7 @@
 											<label for="type" style="font-size: 30px; font-weight: bolder;">Room Type</label>
 											<br>
 											<p style="font-size: 13px;">Please select a room type</p>
-											<input type="radio" id="bedroom" name="type" value="bedroom">
+											<input type="radio" id="bedroom" name="type" value="bedroom" required>
 											<label for="bedroom">Bedroom</label>
 											<br>
 											<input type="radio" id="bathroom" name="type" value="bathroom">
@@ -170,7 +170,7 @@
 											<label for="dimensions" style="font-size: 30px; font-weight: bolder;">Dimensions</label>
 											<br>
 											<p style="font-size: 13px;">Enter room dimentions as Length X Width </p>
-											<input type="text" name="dimensions" id="dimensions">
+											<input type="text" name="dimensions" id="dimensions" required>
 											<br>
 											<br>
 											<input type="file" name="image">
@@ -179,7 +179,7 @@
 											<label for="description" style="font-size: 30px; font-weight: bolder;">Design Type</label>
 											<br>
 											<p style="font-size: 13px;">Please select a design preference.</p>
-											<input type="radio" id="minimalism" name="description" value="minimalism">
+											<input type="radio" id="minimalism" name="description" value="minimalism" required>
 											<label for="minimalism">Minimalism</label>
 											<br>
 											<input type="radio" id="rustic" name="description" value="rustic">
@@ -191,7 +191,7 @@
 											<label for="color" style="font-size: 30px; font-weight: bolder;">Color</label>
 											<br>
 											<p style="font-size: 13px;">This is just a suggestion. The designer has the option of changing the color as per their will. </p>
-											<input type="text" name="color" id="color">
+											<input type="text" name="color" id="color" required>
 											<hr width="80%">
 											<button type="submit" name="submit" value="Upload" class="popupButton">Upload</button>
 										</form>
