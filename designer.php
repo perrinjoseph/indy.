@@ -26,7 +26,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
+    <nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
         <div class="d-flex flex-grow-1">
             <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
             <a class="navbar-brand" href="feed.php">
@@ -40,31 +40,16 @@
         </div>
         
         <script>
-function myFunction() {
-    location.reload();
-}
-</script>
+            function myFunction() {
+                location.reload();
+            }
+        </script>
 
       
-        
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
-            <ul class="navbar-nav ml-auto flex-nowrap">
-              
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="feed.php" class="nav-link">Feed</a>
-                </li>
-                <li class="nav-item">
-                    <a href="designer.php" class="nav-link">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a href="signOut.php" class="nav-link">Sign Out</a>
-                </li>
-            </ul>
-        </div>
+        <?php
+            require "designerNav.php";
+        ?>
+
     </nav>
     <div class="content" id="blur">
     <div class="container-fluid">

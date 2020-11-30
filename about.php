@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -31,26 +35,40 @@
                 </button>
             </div>
         </div>
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
-            <ul class="navbar-nav ml-auto flex-nowrap">
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="packages.html" class="nav-link">Packages</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Sign Up</a>
-                </li>
-            </ul>
-        </div>
+
+        <?php
+            // Different navbar depending on if logged in, and what type of user logged in as
+
+            // Logged in as customer
+            if (isset($_SESSION["cusID"])){
+                require "customerNav.php";
+            // Logged in as designer
+            } elseif (isset($_SESSION["empID"])){
+                require "designerNav.php";
+            // Not logged in
+            } else {
+            ?>
+
+                <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
+                    <ul class="navbar-nav ml-auto flex-nowrap">
+                        <li class="nav-item">
+                            <a href="login.php" class="nav-link">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="about.php" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="packages.php" class="nav-link">Packages</a>
+                        </li>
+                    </ul>
+                </div>
+
+            <?php
+            }
+        ?>
     </nav>
 
     <div class="row">
-
         <div >
             <h2 style=" font-size: 130px; margin-left:70px; font-family: 'Heebo', sans-serif;"> <b>OUR VISION.</b></h2><br>
             <p style=" margin-left:70px; font-family: Courier; color: black; "><b>indy</b> is an online platform for homes that need a makeover.<br>
@@ -58,11 +76,8 @@
             who upload pictures of their houses. Designers use the uploaded pictures to develope <br>
             a 3D model of the house with new interiors. Furthermore, the furniture is readily available<br>
             on online stores such as IKEA, Home Depot etc.
-            
             </p>
-            
-        </div>
-       
+        </div>   
     </div>
     
     <hr width="80%">
