@@ -27,6 +27,9 @@ nav ul li {
 
 }
 
+
+
+
 a {
     text-align: center;
     color: black;
@@ -157,8 +160,8 @@ a:hover {
     align-items: center;
     background-color: #D7D7D7;
 
-    height: 420px;
-    width: 320px;
+    height: 380px;
+    width: 300px;
     border-radius: 68px;
     background: #d7d7d7;
     box-shadow: inset 41px 41px 82px #b7b7b7, 

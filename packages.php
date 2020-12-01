@@ -73,9 +73,9 @@
                 float: left;">
 
                 <h2 style="font-size: 190px; margin-left:300px; font-family: 'Heebo', sans-serif;"> <b>indy.</b></h2>
-                <h2 style=" font-family: 'Poppins', sans-serif; margin-left:300px">Select A Package</h2>
+                <h2 style=" font-family: 'Poppins', sans-serif; margin-left:300px">Packages</h2>
 
-                <p style=" margin-left:300px; font-family: Courier; color: black; ">We offer three different packages. For single room<br> projects, we have an Expert and Premium package that<br> are based on your room's size. If your looking to<br> remodel more than one room, then the Deluxe package<br> may be the one for you.</p>
+                <p style=" margin-left:300px; font-family: Courier; color: black; ">Indy offers 3 different packages. At anytime, it is one project per room. Once you create a project, designers will like your post and an email will be sent to you. You get to choose 1 project to work with by emailing them back. Communication and payment between designers and customers works through email only. Regardless of the package selected, indy provides great customer service, feel free to contact us regarding any questions or inquires.</p>
             </div>
         </div>
         <div class="package">
@@ -88,7 +88,7 @@
                     Furniture Purchase Links Avaialble<br>
                     <h5>Price: $79.99</h5>                    
                 </p>
-                <button type="submit">Select</button>
+                
             </form><br>
         </div>
 
@@ -102,7 +102,7 @@
                     Furniture Purchase Links Available<br>
                     <h5>Price: $99.99</h5>
                 </p>
-                <button type="submit">Select</button>
+                
             </form><br>
         </div>
 
@@ -116,7 +116,7 @@
                     Furniture Purchase Links Available<br>
                     <h5>Price: $175.00</h5>
                 </p>
-                <button type="submit">Select</button>
+                
             </form><br>
         </div>
     </div>
