@@ -42,11 +42,11 @@
                 require "designerNav.php";
             ?>
         </nav>
-
+        <br><br><br>
         <div class="container-fluid">
             <div class="row-bottom-margin">
                 <div class="col-9">
-                    <h1>I, the future<br/> designer.</h1> 
+                    <h1 style="font-size: 140px; ">I, the future<br/> designer.</h1> 
                 </div>
                 <div class="col-3">
                     <!--empty space-->
