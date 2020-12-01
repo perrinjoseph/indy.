@@ -1,6 +1,8 @@
 <?php
-    session_start();
+    // Clear output buffer
+    ob_start();
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xtml1-strict.dtd">
 
@@ -27,7 +29,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
+    <nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
         <div class="d-flex flex-grow-1">
             <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
             <a class="navbar-brand" href="login.php">
@@ -42,10 +44,10 @@
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
             <ul class="navbar-nav ml-auto flex-nowrap">
                 <li class="nav-item">
-                    <a href="about.php" class="nav-link">About</a>
+                    <a href="about.html" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="packages.php" class="nav-link">Packages</a>
+                    <a href="packages.html" class="nav-link">Packages</a>
                 </li>
             </ul>
         </div>
@@ -66,47 +68,23 @@
                 <input type="text" name="email" placeholder="Email" required /><br>
               
                 <textarea name="aboutme" rows="5" cols="40"  placeholder="Blurb about you" required></textarea><br>
-
-
                 <br>
 
-                <?php
-                    $styleError = "";
-                    $style = "";
-                    if (isset($_POST["submit"])) {
-                        if (empty($_POST["style"])) {
-                            $styleError = "<br>Must select a style.";
-                        } else {
-                            //$style = test_input($_POST["gender"]);
-                        }
-
-                        function test_input($data) {
-                            $data = trim($data);
-                            $data = stripslashes($data);
-                            $data = htmlspecialchars($data);
-                            return $data;
-                        }
-                    }
-                ?>
-                Select a Style:<span class="error"><?php echo $styleError;?></span><br>           
-	            <input type="radio" id="rad1" name="style"<?php if (isset($style) && $style=="rustic") echo "checked";?>value="rustic">
+                Select a Style:<span class="error">* </span><br>           
+	            <input type="radio" id="rad1" name="style" value="rustic" required>
                 <label for="rad1">Rustic</label><br> 
                 
-                <input type="radio" id="rad2" name="style"<?php if (isset($style) && $style=="modern") echo "checked";?>value="modern">
+                <input type="radio" id="rad2" name="style" value="modern" required>
                 <label for="rad2">Modern</label><br> 
 
-                <input type="radio" id="rad3" name="style"<?php if (isset($style) && $style=="minimalism") echo "checked";?>value="minimalism">
+                <input type="radio" id="rad3" name="style" value="minimalism" required>
                 <label for="rad3">Minimalism</label><br> 
 
-                <input type="radio" id="rad4" name="style"<?php if (isset($style) && $style=="contemporary") echo "checked";?>value="contemporary">
+                <input type="radio" id="rad4" name="style" value="contemporary" required>
                 <label for="rad4">Contemporary</label><br> 
 
-                <input type="radio" id="rad5" name="style"<?php if (isset($style) && $style=="traditional") echo "checked";?>value="traditional">
+                <input type="radio" id="rad5" name="style" value="traditional" required>
                 <label for="rad5">Traditional</label><br> 
-
-
-
-
                 
                 <br><br>
 
@@ -115,10 +93,8 @@
                 <input type="password" name="retypedPassword" placeholder="re-type password" required />
                 <button type="submit" name="submit">Submit</button>
 
-
-                
-
                 <?php
+                    //get database login info
                     include("database/config.php");
                     
                     if(isset($_POST["submit"])) {
@@ -136,7 +112,6 @@
                         $psword = $_POST['psword'];
                         $retypedPassword = $_POST['retypedPassword'];
 
-                        
                         //prevent mysql injection
                         $fname = stripcslashes($fname);
                         $lname = stripcslashes($lname);
@@ -160,8 +135,6 @@
                         $email = mysqli_real_escape_string($connection, $email);
                         $aboutme = mysqli_real_escape_string($connection, $aboutme);
                         $style = mysqli_real_escape_string($connection, $style);
-                        
-
 
                         //query database
                         $result = @mysqli_query($connection, "select email from employee where email = '$email'");
@@ -180,34 +153,27 @@
 									$sql = "INSERT INTO employee (fname, lname, street, city, state, zip, email, aboutme, style, loginID) VALUES('$fname', '$lname', '$street', '$city', '$state', '$zip', '$email', '$aboutme', '$style', '$id')";
 									@mysqli_query($connection, $sql);
 									
-									
                                     header("Location: login.php");
                                 }
                                 else{
-                                    echo "<br>Passwords don't match!";
+                                    echo "Passwords don't match!";
                                 }
-                            
                             }
                             else{
-                                echo "<br>Username is taken.";
-                            }
-                        
-                            
-                            
+                                echo "Username is taken.";
+                            }                            
                         }
                         else{
-                            
-                            echo "<br>Email is already registered!";
-                            
+                            echo "Email is already registered!";
                         }
 
                         @mysqli_free_result($result);
                         @mysqli_close($connection);
                     }
-                ?></form><br>
+                ?>
+            </form><br>
         </div>
             
-        
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
