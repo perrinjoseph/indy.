@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // Clear output buffer
+    ob_start();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -27,7 +28,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
+    <nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
         <div class="d-flex flex-grow-1">
             <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
             <a class="navbar-brand" href="login.php">
@@ -88,7 +89,6 @@
                         $username = $_POST['username'];
                         $psword = $_POST['psword'];
                         $retypedPassword = $_POST['retypedPassword'];
-
                         
                         //prevent mysql injection
                         $fname = stripcslashes($fname);
@@ -111,9 +111,6 @@
                         $zip = mysqli_real_escape_string($connection, $zip);
                         $email = mysqli_real_escape_string($connection, $email);
                         $aboutme = mysqli_real_escape_string($connection, $aboutme);
-                        
-                        
-
 
                         //query database
                         $result = @mysqli_query($connection, "select email from customer where email = '$email'");
