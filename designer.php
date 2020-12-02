@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Indy - Designer Home</title>
+    <title>Indy - Designer Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600&family=Heebo:wght@600;900&family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
@@ -37,34 +37,11 @@
                     <span class="navbar-toggler-icon" ></span>
                 </button>
             </div>
-        </div>
+        </div>      
         
-        <script>
-function myFunction() {
-    location.reload();
-}
-</script>
-
-      
-        
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
-            <ul class="navbar-nav ml-auto flex-nowrap">
-              
-                  <li class="nav-item">
-                    <a href="designer.php" class="nav-link">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.php" class="nav-link">About</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="feed.php" class="nav-link">Feed</a>
-                </li> 
-                <li class="nav-item">
-                    <a href="signOut.php" class="nav-link">Sign Out</a>
-                </li>
-            </ul>
-        </div>
+        <?php
+            require "designerNav.php";
+        ?>
     </nav>
     <div class="content" id="blur">
     <div class="container-fluid">
@@ -80,14 +57,20 @@ function myFunction() {
                     $row = mysqli_fetch_row($q);
                     //if there is no image for the employee in the database then show the default image. 
                     //else means there is an image so print the image to the website
-                        if(empty($row))
-                            {
-                                echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
-                            }
-                        else{
-                            echo"<img src='$row[0]' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'><br> ";
+                    if(mysqli_num_rows($q)==0) {
+                        echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
+                    } else {
+                        // Substring to remove 'http://localhost/indy/' from result
+                        $picPath = substr($row[0], 22);
+
+                        // Even if the designer has an image in the database, check if its on the server too
+                        if(file_exists($picPath)) {
+                            echo"<img src='$picPath' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'><br> ";
+                        } else {
+                            echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
 
                         }
+                    }
                 }
                 
                 ?>
