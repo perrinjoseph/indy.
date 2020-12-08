@@ -62,8 +62,9 @@
                     if(mysqli_num_rows($q)==0) {
                         echo"<img src='images/designerProfilePics/default.jpg' class='rounded-circle img-fluid img-thumbnail' alt='Designer Profile Pic'> <br>";
                     } else {
-                        // Substring to remove 'http://localhost/indy/' from result
-                        $picPath = substr($row[0], 22);
+                        // Find where images/.... starts and then take a substring starting from that index
+                        $start = strpos($row[0], "images");
+                        $picPath = substr($row[0], $start);
 
                         // Even if the designer has an image in the database, check if its on the server too
                         if(file_exists($picPath)) {
