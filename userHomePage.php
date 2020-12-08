@@ -251,7 +251,7 @@
                                                     $color = $_POST['color'];
                                                     //this is a unique identifier therefore pictures uploaded by two customers with the same 
                                                     //picture name will not replace the existing picture. 
-                                                    $pictures = "http://localhost/indy/images/bedrooms/$fileNameNew";
+                                                    $pictures = "http://helios.vse.gmu.edu/~pdiazvil/indy/images/bedrooms/$fileNameNew";
                                                     
                                                     $cusID = $_SESSION["cusID"];   
                                                     //inserting the immage link with all the information in the project table

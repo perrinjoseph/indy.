@@ -245,7 +245,7 @@ if(isset($_POST['share'] ))
                         
                         //this is a unique identifier therefore pictures uploaded by two customers with the same 
                         //picture name will not replace the existing picture. 
-                        $pictures = "http://localhost/indy/images/designer-images/$fileNameNew";
+                        $pictures = "http://helios.vse.gmu.edu/~pdiazvil/indy/images/designer-images/$fileNameNew";
                         
                         $empID = $_SESSION["empID"];   
                         //update the immage link emp porfolio images
@@ -372,7 +372,7 @@ if(isset($_POST['share'] ))
                                                                 $newStyle = $_POST['style'];
                                                                 //this is a unique identifier therefore pictures uploaded by two customers with the same 
                                                                 //picture name will not replace the existing picture. 
-                                                                $pictures = "http://localhost/indy/images/designerProfilePics/$fileNameNew";
+                                                                $pictures = "http://helios.vse.gmu.edu/~pdiazvil/indy/images/designerProfilePics/$fileNameNew";
                                                                 
                                                                 $empID = $_SESSION["empID"];   
                                                                 //update the immage link employeeProfileImages table
@@ -499,7 +499,7 @@ if(isset($_POST['share'] ))
                                                             $newStyle = $_POST['style'];
                                                             //this is a unique identifier therefore pictures uploaded by two customers with the same 
                                                             //picture name will not replace the existing picture. 
-                                                            $pictures = "http://localhost/indy/images/designerProfilePics/$fileNameNew";
+                                                            $pictures = "http://helios.vse.gmu.edu/~pdiazvil/indy/images/designerProfilePics/$fileNameNew";
                                                             
                                                             $empID = $_SESSION["empID"];   
                                                             //update the immage link employeeProfileImages table
