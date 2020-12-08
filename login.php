@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xtml1-strict.dtd">
 
@@ -24,7 +28,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
         <div class="d-flex flex-grow-1">
             <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="login.php">
                 indy.
             </a>
             <div class="w-100 text-right">
@@ -36,16 +40,10 @@
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
             <ul class="navbar-nav ml-auto flex-nowrap">
                 <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
+                    <a href="about.php" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="packages.html" class="nav-link">Packages</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Sign Up</a>
+                    <a href="packages.php" class="nav-link">Packages</a>
                 </li>
             </ul>
         </div>
@@ -80,10 +78,17 @@
                         $row = mysqli_fetch_row($result);
 
                         if($row[2] == "user"){
+                            $cusResult = @mysqli_query($connection, "select cusID from customer natural join login where username = '$username'");
+                            $cusRow = mysqli_fetch_assoc($cusResult);
+                            $_SESSION['cusID'] = $cusRow['cusID'];
                             header("Location: userHomePage.php");
-                        }
-                        elseif($row[2] == "designer"){
+                        } elseif($row[2] == "designer"){
+                            $empResult = @mysqli_query($connection, "select empID from employee natural join login where username = '$username'");
+                            $empRow = mysqli_fetch_assoc($empResult);
+                            $_SESSION["empID"] = $empRow['empID'];
                             header("Location: feed.php");
+                        } else {
+                            echo "Invalid login";
                         }
 
                         @mysqli_free_result($result);
@@ -110,7 +115,7 @@
                     build a strong portfolio, work <br>with clients, earn money
                     and grow your <br>business.<br> </p>
 
-                <a href='register.html'>
+                <a href='designerRegistration.php'>
                     <button style=" margin-left:300px;  border: none;
                         outline: none; border-radius: 10px;
                         background: #6FD6FF;
@@ -119,7 +124,7 @@
                         padding: 10px;	
 	                ">Designer</button>
                 </a>
-                <a href='register.html'>
+                <a href='customerRegistration.php'>
                     <button style=" margin-left:10px;  border: none;
                         outline: none; border-radius: 10px;
                         background: #6FD6FF;

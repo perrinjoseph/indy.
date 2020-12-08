@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -22,7 +26,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-#D7D7D7">
         <div class="d-flex flex-grow-1">
             <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="login.php">
                 indy.
             </a>
             <div class="w-100 text-right">
@@ -31,22 +35,33 @@
                 </button>
             </div>
         </div>
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
-            <ul class="navbar-nav ml-auto flex-nowrap">
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="packages.html" class="nav-link">Packages</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Sign Up</a>
-                </li>
-            </ul>
-        </div>
+        <?php
+            // Different navbar depending on if logged in, and what type of user logged in as
+
+            // Logged in as customer
+            if (isset($_SESSION["cusID"])){
+                require "customerNav.php";
+            // Not logged in
+            } else {
+            ?>
+
+                <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
+                    <ul class="navbar-nav ml-auto flex-nowrap">
+                        <li class="nav-item">
+                            <a href="login.php" class="nav-link">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="about.php" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="packages.php" class="nav-link">Packages</a>
+                        </li>
+                    </ul>
+                </div>
+
+            <?php
+            }
+        ?>
     </nav>
 
     
@@ -62,9 +77,9 @@
                 float: left;">
 
                 <h2 style="font-size: 190px; margin-left:300px; font-family: 'Heebo', sans-serif;"> <b>indy.</b></h2>
-                <h2 style=" font-family: 'Poppins', sans-serif; margin-left:300px">Select A Package</h2>
+                <h2 style=" font-family: 'Poppins', sans-serif; margin-left:300px">Packages</h2>
 
-                <p style=" margin-left:300px; font-family: Courier; color: black; ">We offer three different packages. For single room<br> projects, we have an Expert and Premium package that<br> are based on your room's size. If your looking to<br> remodel more than one room, then the Deluxe package<br> may be the one for you.</p>
+                <p style=" margin-left:300px; font-family: Courier; color: black; ">Indy offers 3 different packages. At anytime, it is one project per room. Once you create a project, designers will like your post and an email will be sent to you. You get to choose 1 project to work with by emailing them back. Communication and payment between designers and customers works through email only. Regardless of the package selected, indy provides great customer service, feel free to contact us regarding any questions or inquires.</p>
             </div>
         </div>
         <div class="package">
@@ -77,7 +92,7 @@
                     Furniture Purchase Links Avaialble<br>
                     <h5>Price: $79.99</h5>                    
                 </p>
-                <button type="submit">Select</button>
+                
             </form><br>
         </div>
 
@@ -91,21 +106,21 @@
                     Furniture Purchase Links Available<br>
                     <h5>Price: $99.99</h5>
                 </p>
-                <button type="submit">Select</button>
+                
             </form><br>
         </div>
 
         <div class="package">
             <form>
-                <h1>Deluxe</h1>
+                <h1>Luxe</h1>
                 <p>
-                    Up to 4 Rooms<br>
+                    1 Room<br>
                     Size: Any Size<br>
                     Design Revisions: Yes<br>
                     Furniture Purchase Links Available<br>
-                    <h5>Price: $300.00</h5>
+                    <h5>Price: $175.00</h5>
                 </p>
-                <button type="submit">Select</button>
+                
             </form><br>
         </div>
     </div>
